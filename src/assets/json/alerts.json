@@ -1,0 +1,54 @@
+{
+    "result": 1,
+    "message": "Successfully retrived members",
+    "dateTime": "2020-07-21T09:02:29.260Z",
+    "httpCode": 200,
+    "payload": [
+    {
+        "_id": {
+            "$oid": "5f0abeb9100164a47852c79b"
+        },
+        "alertname": "Medication Adherence Alert",
+        "firstalert": "02 Oct 2020, 04:02 am",
+        "startdate": "12 Oct 2020",
+        "enddate": "22 Dec 2020",
+        "status": "Active",
+        "patientalert": "11",
+        "alertvalidity": "30 Days",
+        "action": "pause",
+        "list": "1",
+        "active": "1",
+        "__v": 0
+    },{
+      "_id": {
+        "$oid": "5f117f92c75d0a426ecd54a5"
+      },
+        "alertname": "Gaps in Care Alert",
+        "firstalert": "02 Oct 2020, 04:02 am",
+        "startdate": "12 Oct 2020",
+        "enddate": "26 Nov 2020",
+        "status": "Active",
+        "patientalert": "22",
+        "alertvalidity": "60 Days",
+        "action": "resume",
+        "list": "2",
+        "active": "1",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f0dc34ae677d6fa709780d2"
+        },
+        "alertname": "High Cost Alert",
+        "firstalert": "02 Oct 2020, 04:02 am",
+        "startdate": "11 Oct 2020",
+        "enddate": "20 Oct 2020",
+        "status": "Expired",
+        "patientalert": "23",
+        "alertvalidity": "40 Days",
+        "action": "stopped",
+        "list": "3",
+        "active": "1",
+        "__v": 0
+    }]
+  }

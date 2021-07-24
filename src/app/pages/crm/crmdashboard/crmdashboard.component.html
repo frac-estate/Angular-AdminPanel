@@ -1,0 +1,333 @@
+<div class="container-fluid">
+  <app-page-title title="Dashboard" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <!--<div class="row"> 
+      <ng-template [ngTemplateOutlet]="WidgetData" [ngTemplateOutletContext]="{widget: widget}"
+          *ngFor="let widget of widgetsData"></ng-template>
+  </div>-->
+
+<div class="row">
+    
+    <div class="col-lg-6">
+        <div class="card-body pt-0" style="height: 80px;background-color: #fff;padding: 10px !important;margin: 10px 0px;text-align: center;">
+          <img src="./assets/icon/total_patient.svg" />
+          <span style="width: 400px;padding: 0px 100px;">TOTAL PATIENTS</span>
+          <span style="font-size: 27px;line-height: 32px;text-align: right;color: #2D3748;">10</span>
+        </div> 
+    </div>
+    <div class="col-lg-6">
+        <div class="card-body pt-0" style="height: 80px;background-color: #fff;padding: 10px !important;margin: 10px 0px;text-align: center;">
+          <img src="./assets/icon/total_casemanager.svg" />
+          <span style="width: 400px;padding: 0px 100px;">TOTAL CASE MANAGERS</span>
+          <span style="font-size: 27px;line-height: 32px;text-align: right;color: #2D3748;">10</span>
+        </div> 
+    </div>
+</div>
+
+  <div class="row">
+    
+    <div class="col-lg-6">
+            <div class="card-body pt-0" style="height: 350px;background-color: #fff;"> 
+                <img src="./assets/images/chart-img.svg" />
+            </div> 
+    </div>
+    <div class="col-lg-6">
+            <div class="card-body pt-0" style="height: 350px;background-color: #fff;">
+                <p style="font-size: 15px; line-height: 18px; color: #2D3748;">Quick Actions</p>
+
+                <div style="text-align: center;">
+                    <p>Patient</p>
+                    <a style="background-color: #3182CE;border: none;border-radius: 5px;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                (click)="openPModal(patientcontent)"><b>+</b> Add Patient</a>
+                
+                </div>
+                <hr/>
+                <div style="text-align: center;">
+                    <p>Casemanager</p>
+                    
+                <a style="background-color: #3182CE;border: none;border-radius: 5px;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                (click)="openCMModal(casemanagercontent)"><b>+</b> Add Casemanager</a>
+
+                </div>
+            </div>    
+    </div>
+</div>
+
+  <!--
+  <div class="row">
+      <div class="col-lg-6">
+          <app-portlet title="Analytics" headerClass="h5 header-title" color="white">
+              <div class="card-body pt-0" style="height: 350px;">
+                  <apx-chart [series]="analyticsLineChart.series" [chart]="analyticsLineChart.chart"
+                      [colors]="analyticsLineChart.colors" [stroke]="analyticsLineChart.stroke"
+                      [dataLabels]="analyticsLineChart.dataLabels" [responsive]="analyticsLineChart.responsive"
+                      [legend]="analyticsLineChart.legend" [xaxis]="analyticsLineChart.xaxis"
+                      [stroke]="analyticsLineChart.stroke" [grid]="analyticsLineChart.grid"
+                      [labels]="analyticsLineChart.labels">
+                  </apx-chart>
+              </div>
+          </app-portlet>
+      </div>
+      <div class="col-lg-6">
+          <app-portlet title="Average Time" headerClass="h5 header-title" color="white">
+              <div class="card-body pt-0" style="height: 350px;">
+                  <apx-chart [series]="averagetimeBarChart.series" [chart]="averagetimeBarChart.chart"
+                      [plotOptions]="averagetimeBarChart.plotOptions" [grid]="averagetimeBarChart.grid"
+                      [stroke]="averagetimeBarChart.stroke" [dataLabels]="averagetimeBarChart.dataLabels"
+                      [xaxis]="averagetimeBarChart.xaxis" [legend]="averagetimeBarChart.legend"
+                      [colors]="averagetimeBarChart.colors" [fill]="averagetimeBarChart.fill">
+                  </apx-chart>
+              </div>
+          </app-portlet>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-lg-8">
+          <app-portlet title="RECENT CONVERSATION" headerClass="h5 header-title" color="white">
+              <div class="card-body pt-0">
+                  <div class="table-responsive">
+                      <table class="table table-centered table-hover mb-0">
+                          <thead>
+                              <tr>
+                                  <th>Patient Info</th>
+                                  <th>Message Date</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let contact of contactsData">
+                                  <td class="table-user">
+                                      <img src="{{ contact.image }}" alt="table-user" class="mr-2 rounded-circle">
+                                      <a href="javascript:void(0);"
+                                          class="text-body font-weight-semibold">{{ contact.name }}</a>
+                                  </td>
+                                  <td>
+                                      {{ contact.date }}
+                                  </td>
+                                   
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </app-portlet>
+      </div>
+      <div class="col-lg-4">
+          <app-portlet title="CONVERSATION GROUP" headerClass="h5 header-title" color="white">
+              <div class="card-body pt-2 pb-4">
+                  <div style="height: 310px;">
+                      <apx-chart [chart]="salesDonutChart" [series]="salesDonutChart.series"
+                          [colors]="salesDonutChart.colors" [labels]="salesDonutChart.labels"
+                          [dataLabels]="salesDonutChart.dataLabels" [legend]="salesDonutChart.legend"></apx-chart>
+
+                      <div class="text-center">
+                          <p class="text-muted font-15 font-family-secondary mb-0">
+                              <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-info"></i> Group
+                                  1</span>
+                              <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-primary"></i> Group
+                                  2</span>
+                              <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-light"></i> Group
+                                  3</span>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </app-portlet>
+      </div>
+  </div>
+-->
+</div>
+
+
+
+<ng-template #casemanagercontent role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="background-color: #ffffff !important;">
+      <h4 class="modal-title text-whiteX">Add Case Manager</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background-color: #ffffff !important;">
+      <div class="text-left">
+        
+        <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+        <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+
+        <form (ngSubmit)="cmsaveData()" [formGroup]="cmvalidationform">
+   
+            <div class="form-group">
+                <label for="firstname">First Name <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter First Name" formControlName="firstname"
+                  [ngClass]="{'is-invalid': submitted && cmform.firstname.errors}">
+                <div *ngIf="submitted && cmform.firstname.errors" class="invalid-feedback">
+                  <span *ngIf="cmform.firstname.errors.required">This value is required.</span>
+                </div>
+              </div> 
+      
+              <div class="form-group">
+                <label for="lastname">Last Name <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" formControlName="lastname"
+                  [ngClass]="{'is-invalid': submitted && cmform.lastname.errors}">
+                <div *ngIf="submitted && cmform.lastname.errors" class="invalid-feedback">
+                  <span *ngIf="cmform.lastname.errors.required">This value is required.</span>
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label for="phone" style="width:100%;">Mobile Number <span style="color:red;">*</span></label>
+                <input type="text" id="phonecode" class="form-control" placeholder="1" formControlName="phonecode"
+                  [ngClass]="{'is-invalid': submitted && cmform.phonecode.errors}" [(ngModel)]="phonecodeValue" style="width:25%;float:left;">
+                <input type="text" id="phone" class="form-control" placeholder="Enter Mobile Number" formControlName="phone"
+                  [ngClass]="{'is-invalid': submitted && cmform.phone.errors}" minlength="10" style="width:75%;float:left;">
+                <div *ngIf="submitted && cmform.phonecode.errors" class="invalid-feedback">
+                  <span *ngIf="cmform.phonecode.errors.required">This value is required.</span>
+                </div>
+                <div *ngIf="submitted && cmform.phone.errors" class="invalid-feedback">
+                    <span *ngIf="cmform.phone.errors.required">This value is required.</span>
+                    <!--<span *ngIf="cmform.phone.errors.minlength">Phone number must be 10 characters.</span>-->
+                    <span *ngIf="cmform.phone.errors?.pattern"> Must be 10 Digit, Only numeric values are allowed</span>
+                  </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="email">Email Address <span style="color:red;">*</span></label>
+                <input type="text" id="email" class="form-control" placeholder="Enter Email Address" formControlName="email"
+                  [ngClass]="{'is-invalid': submitted && cmform.email.errors}" >
+                <div *ngIf="submitted && cmform.email.errors" class="invalid-feedback">
+                  <span *ngIf="cmform.email.errors.required">This value is required.</span>
+                  <span *ngIf="cmform.email.errors.pattern">Please enter valid email.</span>
+                </div>
+              </div>
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Add</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+  
+  
+<ng-template #patientcontent role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="background-color: #ffffff !important;">
+      <h4 class="modal-title text-whiteX">Add Patient</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background-color: #ffffff !important;">
+      <div class="text-left">
+        
+        <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+        <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+        
+        <form (ngSubmit)="psaveData()" [formGroup]="pvalidationform">
+   
+              <div class="form-group">
+                <label for="firstname">First Name <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter First Name" formControlName="firstname"
+                  [ngClass]="{'is-invalid': submitted && pform.firstname.errors}">
+                <div *ngIf="submitted && pform.firstname.errors" class="invalid-feedback">
+                  <span *ngIf="pform.firstname.errors.required">This value is required.</span>
+                </div>
+              </div> 
+      
+              <div class="form-group">
+                <label for="lastname">Last Name <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" formControlName="lastname"
+                  [ngClass]="{'is-invalid': submitted && pform.lastname.errors}">
+                <div *ngIf="submitted && pform.lastname.errors" class="invalid-feedback">
+                  <span *ngIf="pform.lastname.errors.required">This value is required.</span>
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label for="dob">Date of Birth <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="dob" placeholder="Enter Date of Birth" formControlName="dob"
+                  [ngClass]="{'is-invalid': submitted && pform.dob.errors}" autocomplete="off" readonly ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" >
+                <div *ngIf="submitted && pform.dob.errors" class="invalid-feedback">
+                  <span *ngIf="pform.dob.errors.required">This value is required.</span>
+                </div>
+              </div> 
+      
+              <div class="form-group">
+                <label for="zipcode">Zip Code <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="zipcode" placeholder="Enter Zip Code" formControlName="zipcode"
+                  [ngClass]="{'is-invalid': submitted && pform.zipcode.errors}">
+                <div *ngIf="submitted && pform.zipcode.errors" class="invalid-feedback">
+                  <span *ngIf="pform.zipcode.errors.required">This value is required.</span>
+                  <span *ngIf="pform.zipcode.errors?.pattern"> Must be 5 Digit, Only numeric values are allowed</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="phone" style="width:100%;">Mobile Number <span style="color:red;">*</span></label>
+                <input type="text" id="phonecode" class="form-control" placeholder="1" formControlName="phonecode"
+                  [ngClass]="{'is-invalid': submitted && pform.phonecode.errors}" [(ngModel)]="phonecodeValue" style="width:25%;float:left;" >
+                <input type="text" id="phone" class="form-control" placeholder="Enter Mobile Number" formControlName="phone"
+                  [ngClass]="{'is-invalid': submitted && pform.phone.errors}" minlength="10"  style="width:75%;float:left;">
+                <div *ngIf="submitted && pform.phone.errors" class="invalid-feedback">
+                  <span *ngIf="pform.phone.errors.required">This value is required.</span>
+                  <!--<span *ngIf="pform.phone.errors.minlength">Phone number must be 10 characters.</span>-->
+                  <span *ngIf="pform.phone.errors?.pattern"> Must be 10 Digit, Only numeric values are allowed</span>
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="email">Email Address <span style="color:red;">*</span></label>
+                <input type="text" id="email" class="form-control" placeholder="Enter Email Address" formControlName="email"
+                  [ngClass]="{'is-invalid': submitted && pform.email.errors}" >
+                <div *ngIf="submitted && pform.email.errors" class="invalid-feedback">
+                  <span *ngIf="pform.email.errors.required">This value is required.</span>
+                  <span *ngIf="pform.email.errors.pattern">Please enter valid email.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pcp">Select PCP </label>
+                <ng-select [items]="PCPcontacts"
+                bindLabel="entityName" bindValue="entityId" id="pcp" name="pcp" formControlName="pcp"
+                placeholder="Choose PCP" >
+                </ng-select> 
+              </div>
+    
+              <div class="form-group">
+                <label for="casemanager">Assign Case Manager </label>
+                <ng-select [items]="CMcontacts"
+                bindLabel="firstName" bindValue="sh360Id" id="casemanager" name="casemanager" formControlName="casemanager"
+                placeholder="Choose Casemanager" >
+                </ng-select>
+ 
+              </div>
+
+              <div class="form-group" style="width:100%;display:none;">
+                <label for="speciality">Choose Speciality </label>
+                <ng-select [items]="PCPcontacts" multiple="true"
+                bindLabel="entityName" bindValue="entityId" id="speciality" name="speciality" formControlName="speciality"
+                placeholder="Choose Speciality" >
+                </ng-select>
+                  
+              </div>
+
+              <div class="form-group">
+                <label for="aggregation">
+                    <input type="checkbox" id="aggregation" class="form-controlX" placeholder="Choose Aggregation" formControlName="aggregation" />
+                    Start Aggregation 
+                </label>
+              </div>
+
+              
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Add</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+ 

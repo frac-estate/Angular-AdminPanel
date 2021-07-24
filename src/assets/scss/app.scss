@@ -1,0 +1,319 @@
+/*
+Template Name: Ubold - Responsive Bootstrap 4 Admin Dashboard
+Author: CoderThemes
+Version: 3.1.0
+Website: https://coderthemes.com/
+Contact: support@coderthemes.com
+File: Main Css File
+*/
+
+
+//Fonts
+@import "custom/fonts/fonts";
+
+//Core files
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "variables";
+@import "./node_modules/bootstrap/scss/mixins.scss";
+
+//OWL CSS
+//@import "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+//@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+// Structure
+@import "custom/structure/general";
+@import "custom/structure/left-menu";
+@import "custom/structure/topbar";
+@import "custom/structure/page-head";
+@import "custom/structure/footer";
+@import "custom/structure/right-sidebar";
+@import "custom/structure/layouts";
+
+//Components
+@import "custom/components/helper";
+@import "custom/components/social";
+@import "custom/components/widgets";
+@import "custom/components/custom-checkbox";
+@import "custom/components/custom-radio";
+@import "custom/components/ribbons";
+@import "custom/components/print";
+@import "custom/components/preloader";
+
+//Pages
+@import "custom/pages/authentication";
+@import "custom/pages/components-demo";
+@import "custom/pages/error";
+@import "custom/pages/logout";
+@import "custom/pages/faq";
+@import "custom/pages/timeline";
+@import "custom/pages/email";
+@import "custom/pages/sitemap";
+@import "custom/pages/pricing";
+@import "custom/pages/gallery";
+@import "custom/pages/profile";
+@import "custom/pages/taskboard";
+@import "custom/pages/ecommerce";
+
+// Vendors
+@import "vendor/metisMenu";
+
+
+// Plugins
+@import "custom/plugins/waves";
+@import "custom/plugins/rangeslider";
+@import "custom/plugins/calendar";
+
+@import "custom/plugins/datatable";
+@import "custom/plugins/daterange";
+@import "custom/plugins/form-wizard";
+@import "custom/plugins/select2";
+@import "custom/plugins/slimscroll";
+@import "custom/plugins/toaster";
+@import "custom/plugins/sweetalert";
+@import "custom/plugins/carousel";
+@import "custom/plugins/animation";
+@import "custom/plugins/tour";
+@import "custom/plugins/apexcharts";
+@import "custom/plugins/chartjs";
+@import "custom/plugins/chartist";
+@import "custom/plugins/colorpicker";
+@import "custom/plugins/responsive-table";
+@import "custom/plugins/bootstrap-tables";
+@import "custom/plugins/jsgrid";
+@import "custom/plugins/multiple-select";
+@import "custom/plugins/autocomplete";
+@import "custom/plugins/bootstrap-select";
+@import "custom/plugins/summernote";
+@import "custom/plugins/dropzone";
+@import "custom/plugins/dropify";
+@import "custom/plugins/cropper";
+@import "custom/plugins/google-maps";
+@import "custom/plugins/datepicker";
+@import "custom/plugins/ui-switch";
+
+body.authentication-bg {
+  background-color: #E2E8F0 !important; 
+}
+
+.modal-dialog {
+    background: transparent !important;
+    max-width: 800px !important;
+}
+
+.modal-content {
+    background: transparent !important;
+}
+
+
+.modal-lg {
+    width: 925px !important;
+    max-width: 1000px !important;
+  }
+
+
+  
+/* Calendar Start */
+
+.calbtn {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: blue !important;
+    font-size: 20px !important;
+  }
+  
+  
+  .cal-month-view .cal-day-cell {
+    min-height: 40px !important;
+  }
+  
+  .cal-month-view .cal-cell-top {
+    min-height: 35px !important;
+    text-align: center !important;
+    margin-top: 12px !important;
+  }
+  
+  .cal-month-view .cal-day-badge {
+    display: none !important;
+  }
+  
+  .cal-month-view .cal-header .cal-cell {
+    max-width: 62px;
+    margin: 0px 5px;
+  }
+  
+  .cal-month-view .cal-events {
+    height: 10px;
+    width: 10px;
+    min-height: 10px;
+    max-height: 10px;
+    position: absolute;
+    margin: 35px 0px 0px 22px !important;
+  }
+  
+  .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: 1.2em !important;
+  }
+  
+  .cal-month-view .cal-open-day-events {
+    display: none !important;
+  }
+  
+  
+  ul.calcyearview li {
+    height: 65px !important;
+    width: 95px !important;
+    border: 0px solid !important;
+    text-align: center !important;
+    float: left !important;
+    list-style: none !important;
+  }
+  ul.calcyearview li span.monthbox {
+    width: 200px !important;
+    padding: 5px 30px !important;
+  }
+  /*
+  ul.calcyearview li span.redbox{
+    width:50px !important; 
+    height: 50px !important; 
+    background: red !important;
+    padding: 0px 5px !important;
+    margin: 5px !important;
+  }
+  ul.calcyearview li span.greenbox{
+    width:50px !important; 
+    height: 50px !important; 
+    background: green !important;
+    padding: 0px 5px !important;
+    margin: 5px !important;
+  }
+  */
+  ul.calcyearview li span.redbox{
+    width:50px !important; 
+    height: 50px !important; 
+    color: red !important;
+    background: #F7E1CF !important;
+    border-radius: 8px;
+    padding: 2px 5px !important;
+    margin: 2px !important;
+    font-size: 12px;
+  }
+  ul.calcyearview li span.greenbox{
+    width:50px !important; 
+    height: 50px !important; 
+    color: green !important;
+    background: #CFF7D9 !important;
+    border-radius: 8px;
+    padding: 2px 5px !important;
+    margin: 2px !important;
+    font-size: 12px;
+  }
+  
+  
+  .cal-month-view .cal-days, .cal-month-view .cal-day-cell.cal-today, .cal-month-view .cal-day-cell:not(:last-child) {
+    border: none !important;
+  }
+  
+  .cal-month-view .cal-days .cal-cell-row {
+    border: none !important;
+  }
+  
+  .cal-month-view .cal-cell .cal-event {
+      
+      pointer-events: all !important;
+      position: absolute !important;
+      /* background: #6AD1AF !important; */
+      width: 5px !important;
+      height: 5px !important;
+  
+  }
+  
+  
+  .cal-month-view .cal-in-month .cal-day-number {
+    opacity: 1.0 !important;
+    color: #0072BC !important;
+  }
+  
+  .cal-month-view .cal-out-month .cal-day-number {
+    opacity: 0.7 !important;
+    color: #313131 !important;
+  }
+  
+  .cal-month-view .cal-header {
+    text-align: center;
+    font-weight: bolder;
+    color: #ccc !important;
+    text-transform: uppercase;
+  }
+  
+  
+   
+  .cal-month-view .cal-future .cal-day-number {
+    opacity: 0.4 !important;
+    color: #000 !important;
+  }
+  
+  .cal-future:hover {
+    background-color: #fafafa !important;
+  }
+  
+  .cal-future:focus {
+    border: #fafafa !important;
+  }
+  /*
+  mwl-calendar-month-cell:hover, mwl-calendar-month-cell:active, mwl-calendar-month-cell:focus {
+    border:1px #e9e solid !important;;
+  } 
+  .cal-future:hover{
+    border:1px #e9e solid !important;;
+    }
+    .cal-future:active{
+    border:2px blue solid !important;;
+    }
+    .cal-future:focus{
+    border:2px green solid !important;;
+    }
+  */
+  .cal-month-view .cal-future .cal-cell-row .cal-cell:hover, .cal-month-view .cal-future .cal-cell.cal-has-events.cal-open {
+    background-color: #fafafa !important;
+  }
+  
+  .cal-month-view .cal-day-number {
+    float: none !important;
+    margin-bottom: 0px !important;
+    margin-right: 0px !important;
+  }
+  
+  
+  /* Calendar End */
+  
+  .progress-outer {
+    margin: 5px 2% !important;
+    padding: 0px !important;
+  }
+
+/* 
+.dataTables_filter {
+  position: absolute !important;
+  right: 525px !important;
+  top: -40px !important;
+}*/
+
+.dataTables_filter {
+  float: left !important;
+}
+/*
+div#filterareanew {
+  display: none !important;
+}
+*/
+
+.dataTables_info {
+  display: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  color: #dadada !important;
+}

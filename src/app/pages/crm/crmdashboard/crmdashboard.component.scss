@@ -1,0 +1,135 @@
+
+.modal-dialog {
+    background: transparent !important;
+    width: 800px !important;
+}
+
+.modal-content {
+    background: transparent !important;
+}
+
+.modal-header {
+    /*
+    background: #FFFFFF !important;
+    border-radius: 31px 31px 0px 0px !important;
+    color: #222222 !important;
+    */
+}
+
+.modal-header span{
+    color: #222222 !important;
+}
+
+.modal-header h4{
+    color: #222222 !important;
+}
+
+.modal-body {
+    /*
+    background: #F2F2F2 !important;
+    */
+}
+
+h4.group-title {
+color: #000000;
+opacity: 0.3;
+flex: none;
+order: 0;
+align-self: flex-start;
+flex-grow: 0;
+margin: 0px;
+font-size: 14px;
+height:30px;
+text-transform: uppercase;
+}
+
+.input-rule-name-box {
+    width:50%;
+    height: 80px;
+    float:left;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.label-rule-name-box {
+    width:50%;
+    height: 80px;
+    float:left;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.label-rule-name-box p{
+    padding: 18px 10px 10px 10px;
+    margin: 0px 0px 0px 20px;
+}
+
+.input-rule-desc-box {
+    width:50%;
+    height: 160px;
+    float:left;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.label-rule-desc-box {
+    width:50%;
+    height: 160px;
+    float:left;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input-rule-desc-box textarea {
+    height: 110px;
+}
+
+
+.input-rule-script-box{
+    width:100%;
+    height: 560px;
+    float:left;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input-rule-script-box textarea.box1, .input-rule-script-box textarea.box2{
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 11px rgba(0, 0, 0, 0.11);
+    height: 160px;
+}
+
+
+.input-rule-script-box textarea.box3{
+    background: #222222;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 11px rgba(0, 0, 0, 0.11);
+    height: 250px;
+}
+
+.label-rule-desc-box p{
+    padding: 18px 10px 10px 10px;
+    margin: 0px 0px 0px 20px;
+}
+
+
+textarea.box3 {
+    color: #ffffff !important;
+  }
+  
+  textarea.box3::placeholder {
+    color: #b2a2a2bd !important;
+  }
+
+  form div.form-group {
+    margin-bottom: 1rem;
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}

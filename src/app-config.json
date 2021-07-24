@@ -1,0 +1,8 @@
+{
+  "apiUrl": "http://18.213.144.230:11005",
+  "production": false,
+  "baseUrl": "http://18.213.144.230:11006/outreach",
+  "websocketBaseUrl": "http://18.213.144.230:11006/outreach",
+  "webbaseUrl": "/"
+  }
+    

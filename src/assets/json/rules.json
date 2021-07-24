@@ -1,0 +1,46 @@
+{
+    "result": 1,
+    "message": "Successfully retrived members",
+    "dateTime": "2020-07-21T09:02:29.260Z",
+    "httpCode": 200,
+    "payload": [
+    {
+        "_id": {
+            "$oid": "5f0abeb9100164a47852c79b"
+        },
+        "rulename": "Missed Medication Rule",
+        "rulecategory": "Medication Adherence",
+        "ruledetail": "This rule is to check if the medicines are missed even once",
+        "ruledate": "12 Oct 2020, 04:02 pm",
+        "alertvalidity": "30 Days",
+        "category": "1",
+        "action": "1",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f0abeb9200164a47852c79b"
+        },
+        "rulename": "Preventative Mammogram Rule",
+        "rulecategory": "Gaps in Care",
+        "ruledetail": "Rule to check if the patient has not taken any Mammogram if the age is more than 40",
+        "ruledate": "10 Oct 2020, 10:32 am",
+        "alertvalidity": "20 Days",
+        "category": "2",
+        "action": "1",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f0abeb9300164a47852c79b"
+        },
+        "rulename": "Specialist Visit Rule",
+        "rulecategory": "High Cost",
+        "ruledetail": "Rule to check if the patient has any visit to a specialist or emergency admission",
+        "ruledate": "02 Oct 2020, 11:12 am",
+        "alertvalidity": "40 Days",
+        "category": "3",
+        "action": "1",
+        "__v": 0
+    }]
+  }

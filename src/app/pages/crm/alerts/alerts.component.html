@@ -1,0 +1,196 @@
+<style>
+.scroll-content {
+    height: 75vh;
+}
+</style>
+
+<div class="container-fluid" style="height: 100%;">
+  <div class="row">
+
+    <div class="col-xl-3">
+      <div class="card center-screen-side">
+      
+      <div class="card-box" style="padding: 0px;">
+ 
+        <div class="top-card-side-body">
+
+          <div class="app-search">
+            <div class="box">
+              <div class="container-1">
+                  <span class="icon">
+                    <!--<i class="fas fa-search"></i>-->
+                    <img src="./assets/icon/icon-search.svg" />
+                  </span>
+                  <input id="search" class="search" [(ngModel)]="searchText" placeholder="Search patient name" />
+
+                  <!--<input type="search" id="search" placeholder="Search patient name" />-->
+                  
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="top-card-side-body">
+          <div class="box">
+            <div class="container-1">
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="middel-card-side-body">
+          <h4 class="header-title mb-3 box-title-msg">RECENT CONVERSATION  <!--<a routerLink="/crm/messages" class="waves-effect" style="float: right;font-weight: normal;font-size: 14px;">View</a>--></h4>
+        
+          <div class="inbox-widget" appSlimScroll style="min-height: 310px;">
+            
+            
+            <ul>
+              <li *ngFor="let inbox of inboxData | filter : searchText">
+                {{inbox.name}}
+              </li>
+            </ul>
+           
+           
+           <!--
+              <div class="inbox-item" style="padding: 1rem;border-bottom: 1px solid #dfd8d8;" *ngFor="let inbox of inboxData">
+                <a href="javascript:void(0);" (click)="clickUser()">
+                  <div class="inbox-item-img"><img src="{{inbox.image}}" class="rounded-circle" alt=""></div>
+                  <p class="inbox-item-author">{{ inbox.name }}</p>
+                  <p class="inbox-item-text">{{ inbox.message }}</p>
+                  <p class="inbox-item-date">
+                      <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13"> {{ inbox.time }} </a>
+                  </p>
+                </a>
+              </div>
+            -->
+              <div class="inbox-item" *ngFor="let inbox of inboxData">
+                <a href="javascript:void(0);" (click)="clickUser()">
+                  <div class="inbox-item-img"><img src="{{inbox.image}}" class="rounded-circle" alt=""></div>
+                  <p class="inbox-item-author">{{ inbox.name }}</p>
+                </a>
+              </div>
+              
+          </div>
+  
+
+        </div>
+        
+        <div class="bottom-card-side-body">
+
+          <span>This messaging/chat is protected</span>
+
+        </div>
+      </div>
+    </div>
+
+ 
+    </div>
+
+    <div class="col-xl-9">
+      <div class="card center-screen-main">
+        <div class="top-card-body" *ngIf=" !MessageBox0  ">
+          <div class="inbox-item" style="padding: 1rem;border-bottom: 1px solid #dfd8d8;height: 60px;" *ngFor="let inbox of inboxDataSingle">
+            <div class="inbox-item-img" style="width: 40px;height: 40px;float: left;"><img src="{{inbox.image}}" class="rounded-circle" alt="" style="width: 32px;height: 32px;"></div>
+            <div class="inbox-item-author" style="width: 300px;height: 40px;float: left;padding-top: 5px;font-weight: bold;">{{ inbox.name }}</div>
+
+            <div class="inbox-item-btn" style="width: 40px;height: 40px;float: right;padding-top: 5px;font-weight: bold;">
+              <a href="javascript:void(0);" (click)="showMessages()">
+                <img src="./assets/icon/round-dot-btn.svg" />
+              </a>              
+            </div>
+          </div>
+        </div>
+        
+        <div class="message-card-body">
+
+          
+          <div id="message-box-0" class="card-body" *ngIf=" MessageBox0 " >
+
+            <div class="center-screen-mid" >
+              <div>
+                <!--<i class="fas fa-comments" style="font-size: 48px;"></i>-->
+                <img src="./assets/icon/icon-comments-solid.svg" style="width: 60px;opacity: 0.4;" />
+              </div>
+              <p>
+                Click on one of the recent conversatios to see active chat messages
+              </p>
+            </div>
+
+          </div>
+
+          <div id="message-box-1" class="card-body" *ngIf=" MessageBox1 "  style="min-height: 500px;">
+
+            <div class="center-screen-no-msg" >
+              <p>
+                This is the beginning of chat with <br/>
+                - Darlene Robertson -   
+              </p>
+            </div>
+
+            <div class="center-screen-help-msg" >
+              <p>
+                To start a conversation, please type a message in the text box below
+              </p>
+
+            </div>
+
+          </div>
+
+          <div id="message-box-1" class="card-body" *ngIf=" MessageBox2 ">
+            <div class="message-date">
+              <div class="message-date-1">
+                <div class="message-date-box">
+                  <p>28 NOV 2020</p>
+                </div>              
+              </div>
+            </div>
+            <div class="message-received">
+              <p>Hey</p>
+            </div>
+            <div class="message-sent">
+              <p>Hello Mrs Darlene Robertson, this is Grace from Uni-Health</p>
+            </div>
+            <div class="message-received">
+              <p>Okay</p>
+            </div>
+            <div class="message-sent">
+              <p>Thanks</p>
+            </div>
+            <div class="message-received">
+              <p>Okay</p>
+            </div>
+            <div class="message-date">
+              <div class="message-date-2">
+                <div class="message-date-box">
+                  <p>TODAY</p>
+                </div>                        
+                <hr class="message-date-solid-line">       
+              </div>              
+            </div>
+            <div class="message-received">
+              <p>Hey</p>
+            </div>
+            <div class="message-sent">
+              <p>Hello, Mrs Darlene Robertson. This is just a gentle reminder on your upcoming visit to PCP </p>
+            </div>
+            <div class="message-sent">
+              <p>Thank You</p>
+            </div>
+            <div class="message-received">
+              <p>Yes! That is correct</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="bottom-card-body" *ngIf=" !MessageBox0 ">
+
+          <input type="text" class="input-msg" placeholder="Type your message..." (click)="showMessages()">
+
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+</div>        

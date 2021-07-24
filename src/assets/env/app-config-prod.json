@@ -1,0 +1,9 @@
+{
+    "production": true,
+    "baseUrl": "https://api.useradm.hlth360.net/entity",
+    "chatbaseUrl": "",
+    "providerbaseUrl": "",
+    "websocketBaseUrl": "",
+    "socketIOBaseUrl": "",
+    "webbaseUrl": "/"
+}

@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ "$DEPLOYMENT_GROUP_NAME" == "sh360entityadmin-client_DEV_DG" ]
+then
+    set -e
+    chmod 755 -R /usr/share/nginx/html/*
+    yes | cp -rf /usr/share/nginx/html/assets/env/app-config-dev.json /usr/share/nginx/html/assets/config/app-config.json && sudo systemctl start nginx
+elif [ "$DEPLOYMENT_GROUP_NAME" == "sh360entityadmin-client_VAL_DG" ]
+then
+    set -e
+    chmod 755 -R /usr/share/nginx/html/*
+    yes | cp -rf /usr/share/nginx/html/assets/env/app-config-val.json /usr/share/nginx/html/assets/config/app-config.json
+    service nginx start
+elif [ "$DEPLOYMENT_GROUP_NAME" == "sh360entityadmin-client_PRD_DG" ]
+then
+    set -e
+    chmod 755 -R /usr/share/nginx/html/*
+    yes | cp -rf /usr/share/nginx/html/assets/env/app-config-prod.json /usr/share/nginx/html/assets/config/app-config.json
+    service nginx start
+else
+   echo "None of the condition met"
+fi
+

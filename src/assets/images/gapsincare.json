@@ -1,0 +1,56 @@
+{
+   "result":1,
+   "message":"Successfully retrieved Gapsincare !!",
+   "dateTime":"2021-06-16T07:25:31.552Z",
+   "httpCode":200,
+   "resourceCount":3,
+   "payload":{
+      "SH360PatientId":"2f3a0cae-2cc4-4a4e-971a-0367a2454a07",
+      "resourceTypes":[
+         "Gapsincare"
+      ],
+      "SH360Resources":[
+         {
+            "resourceType":"Gapsincare",
+            "resourceId":"2803510",
+            "resourceName":"Mammogram",
+            "resourceCode":"77067",
+            "resourceDesc":"to be done for women between 50 and 54 to get this annually, women > 54 to get this once every two years or once a year",
+            "resourceVersion":"stu3",
+            "resourceDate":"Jun 16, 2021",
+            "isRead":false
+		},
+		{
+			"resourceType":"Gapsincare",
+			"resourceId":"2803511",
+			"resourceName":"Colorectal Cancer Screening",
+			"resourceCode":"45378",
+			"resourceDesc":"to be done for all adults  between 45 and 75, done at regular intervals typically every 5 years",
+			"resourceVersion":"stu3",
+			"resourceDate":"Jun 16, 2021",
+			"isRead":true
+		},
+		{
+			"resourceType":"Gapsincare",
+			"resourceId":"2803512",
+			"resourceName":"BMI Assessment",
+			"resourceCode":"3008F",
+			"resourceDesc":"to be done at least once during an outpatient visit",
+			"resourceVersion":"stu3",
+			"resourceDate":"Jun 16, 2021",
+			"isRead":false
+		},
+		{
+			"resourceType":"Gapsincare",
+			"resourceId":"2803513",
+			"resourceName":"Annual Flu Vaccine",
+			"resourceCode":"90653",
+			"resourceDesc":"to be done for our These are the preventative screening and immunization requirements for adults.",
+			"resourceVersion":"stu3",
+			"resourceDate":"Jun 16, 2021",
+			"isRead":true
+		}
+      ]
+   },
+   "errorCode":null
+}

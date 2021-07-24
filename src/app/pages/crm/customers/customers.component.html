@@ -1,0 +1,505 @@
+<div class="container-fluid" style="height: 100%;">
+  <div class="row">
+
+
+    <div class="col-xl-12">
+      <div class="card center-screen-main">
+       
+        
+        <div class="message-card-body">
+
+          
+          <div id="message-box-0" class="card-body" *ngIf=" !loading ">
+
+            <div class="center-screen-mid" >
+              <div>
+                <img src="./assets/images/users/sh360-noprofile.png" style="width: 100px;padding: 20px;" />
+              </div>
+              <p>
+                Please wait profile information loading
+              </p>
+            </div>
+
+          </div>
+
+          <div id="message-box-1" class="card-body" style="margin: 0 auto;width: 60%;" *ngIf="loading">
+ 
+            <div class="center-screen-med profile-widget" >
+              <div class="inbox-item">
+                 
+                <div class="inbox-item-img" *ngIf = " !staffInfo.profilePicture || staffInfo.profilePicture==null ">
+                  <img src="./assets/images/users/sh360-noprofile.png" class="rounded-circle" alt="">
+                </div>
+                
+                <div class="inbox-item-img" *ngIf = " staffInfo.profilePicture!='' && staffInfo.profilePicture!=null ">
+                  <img [src]="staffInfo.profilePicture" class="rounded-circle" alt="">
+                </div>
+
+
+                <div class="inbox-item-img-icon"><a href="javascript:void(0);" (click)="profileImageUpdate(profileimagecontent)"><img src="./assets/icon/profile-edit-icon.svg" class="rounded-circle" alt=""></a></div>
+                <div class="inbox-item-author">
+                  <p class="inbox-item-name">{{staffInfo.firstName}} {{staffInfo.lastName}}</p>
+                  <div class="inbox-item-name" style="float: right;">
+                    <span>
+                      <a href="javascript:void(0);" routerLink="/crm/patients" class="mouse-pointer" style="font-style: normal; font-weight: normal; font-size: 18px; line-height: 25px; text-align: center; color: #222222;">
+                        <img src="./assets/sh360icons/Back.png" /> Go Back
+                      </a>
+                    </span>
+                  </div>
+                </div>     
+                
+                
+              </div>
+              <div class="tab-head">
+                <a href="javascript:void(0);">Profile Information</a>
+              </div>
+              <div class="tab-head" style="margin-left: 30px;color: #aebcc3;border-bottom: 2px solid #aebcc3;">
+                <a href="javascript:void(0);" routerLink="/crm/security" style="color: #aebcc3;">Security</a>
+              </div>
+              
+              <hr class="med-solid-line">       
+            </div>
+
+            <div class="form-section" style="width: 60%;margin: 0 auto;">
+ 
+
+              
+              <form class="form-horizontal">
+                <div class="form-group row mb-3">
+                    <label for="inputFName" class="col-3 col-form-label">First Name</label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="inputFName" value="{{staffInfo.firstName}}" placeholder="First Name" disabled />
+                    </div>
+                </div>
+              </form>
+              <form class="form-horizontal">
+                <div class="form-group row mb-3">
+                    <label for="inputLName" class="col-3 col-form-label">Last Name</label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="inputLName" value="{{staffInfo.lastName}}" placeholder="Last Name" disabled />
+                    </div>
+                </div>
+              </form>  
+              <form (ngSubmit)="saveEmailContact(changeemailcontactcontent)" [formGroup]="emailform" class="form-horizontal">
+                <div class="form-group row mb-3">
+                  <label for="inputEmail" class="col-3 col-form-label">Email Address</label>
+                  <div class="col-9">
+                      <div id="emailview" *ngIf="emailview">
+                        <input type="email" class="form-control" id="inputEmail" value="{{emaildisplay}}" placeholder="Email" disabled />
+                      </div>
+                      <div id="emailedit" *ngIf="emailedit">
+                        <input type="email" class="form-control" id="emailchange" name="emailchange" placeholder="Enter Email" formControlName="emailchange"  [(ngModel)]="email"
+                          [ngClass]="{'is-invalid': isemailEntered && formE.emailchange.errors}" (keyup)="emailEntered()" >
+                        <div *ngIf="isemailEntered && formE.emailchange.errors" class="invalid-feedback">
+                          <span *ngIf="formE.emailchange.errors.required">Please enter valid email</span>
+                          <span *ngIf="formE.emailchange.errors?.pattern">Please enter valid email</span>
+                        </div>
+                      </div>
+                      <div class="col-4" style="padding: 0px;margin: 0px;float: left;">&nbsp;
+                        
+                        <button *ngIf="emailstatus" class="btn btn-info" type="button" style="padding: 0px 2px;margin: 0px;">
+                          Verified <img src="./assets/icon/icon-check-circle.svg" />
+                        </button>
+                        <button *ngIf="!emailstatus" class="btn btn-warning" type="button" style="padding: 0px 2px;margin: 0px;">
+                          Not verified <img src="./assets/icon/icon-check-circle.svg" />
+                        </button>
+                        
+                      </div>                      
+                      <div class="col-4" style="padding: 0px;margin: 0px;float: left;">
+                        &nbsp;
+                        <button (click)="resendCodeEmail(resendemailcontactcontent)" *ngIf="!emailstatus" class="btn btn-info" type="button" style="float: right;padding: 0px 0px 0px 10px;margin: 0px;background: none;border: none;color: #3182ce;font-weight: bold;">
+                          Verify Now
+                        </button>
+                        
+                      </div>                      
+                      <div class="col-4" style="padding: 0px;margin: 0px;float: left;">
+                        <a *ngIf="emailview" href="javascript:void(0);" style="float: right; font-weight: bold;color: #3182ce; " (click)="openEmailEdit()">Change</a>
+                        <!--
+                        <a href="javascript:void(0);" style="float: right; font-weight: bold;color: #3182ce; " (click)="saveEmailContact(changeemailcontactcontent)">Verify</a>
+                        -->
+                        <button *ngIf="emailedit" class="btn btn-info" type="submit" style="float: right;padding: 0px 0px 0px 10px;margin: 0px;background: none;border: none;color: #3182ce;font-weight: bold;">
+                          Verify
+                        </button>
+                        <a *ngIf="emailedit" href="javascript:void(0);" style="float: right; font-weight: bold;color: #9e9e9e; " (click)="closeEmailEdit()">Cancel</a>
+                      </div>
+                  </div>
+                   
+              </div>
+            </form>  
+            <form (ngSubmit)="saveMobileContact(changemobilecontactcontent)" [formGroup]="mobileform" class="form-horizontal">
+                <div class="form-group row mb-3">
+                    <label for="inputMobile" class="col-3 col-form-label">Mobile Number</label>
+                    <div class="col-9">
+                      <div id="mobileview" *ngIf="mobileview">
+                        <input type="text" class="form-control" id="inputMobile" data-toggle="input-mask" mask="(000) 000-0000" value="{{mobiledisplay}}" placeholder="Mobile" disabled />  
+                      </div>                      
+
+                      <div id="mobileedit" *ngIf="mobileedit"> 
+
+                        <input type="hidden" class="form-control" id="mobilecodechange" name="mobilecodechange" placeholder="Enter Mobile" formControlName="mobilecodechange" [(ngModel)]="mobilecode" style="float: left;width:10%;"  />
+
+                        <input type="text" class="form-control" id="mobilechange" name="mobilechange" placeholder="Enter Mobile" formControlName="mobilechange" [(ngModel)]="mobile" style="float: left;width:100%;"
+                          [ngClass]="{'is-invalid': ismobileEntered && formM.mobilechange.errors}" maxlength="10" (keypress)="validateQty($event)" (keyup)="mobileEntered()">
+                        <div *ngIf="ismobileEntered && formM.mobilechange.errors" class="invalid-feedback">
+                          <span *ngIf="formM.mobilechange.errors.required">Please enter valid mobile</span>            
+                          <span *ngIf="formM.mobilechange.errors?.pattern"> Must be 10 Digit, Only numeric values are allowed</span>
+                        </div>
+                      </div>
+                      <div class="col-4" style="padding: 0px;margin: 0px;float: left;">&nbsp;
+                         
+                        <button *ngIf="mobilestatus" class="btn btn-info" type="button" style="padding: 0px 2px;margin: 0px;">
+                          Verified  <img src="./assets/icon/icon-check-circle.svg" />
+                        </button>
+                        <button *ngIf="!mobilestatus" class="btn btn-warning" type="button" style="padding: 0px 2px;margin: 0px;">
+                          Not verified  <img src="./assets/icon/icon-check-circle.svg" />
+                        </button>
+                        
+                        
+                      </div>
+                      <div class="col-4" style="padding: 0px;margin: 0px;float: left;">
+                        &nbsp;
+                        <button (click)="resendCodeMobile(resendmobilecontactcontent)" *ngIf="!mobilestatus" class="btn btn-info" type="button" style="float: right;padding: 0px 0px 0px 10px;margin: 0px;background: none;border: none;color: #3182ce;font-weight: bold;">
+                          Verify Now
+                        </button>
+                      </div>                      
+                      <div class="col-4" style="padding: 0px;margin: 0px;float: left;">
+                        <a *ngIf="mobileview" href="javascript:void(0);" style="float: right; font-weight: bold;color: #3182ce; " (click)="openMobileEdit()">Change</a>
+
+                        <!--
+                          <a href="javascript:void(0);" style="float: right; font-weight: bold;color: #3182ce; " (click)="saveMobileContact(changeemailcontactcontent)">Verify</a>
+                        -->  
+                        
+                        <button *ngIf="mobileedit" class="btn btn-info" type="submit" style="float: right;padding: 0px 0px 0px 10px;margin: 0px;background: none;border: none;color: #3182ce;font-weight: bold;">
+                          Verify
+                        </button>
+                        <a *ngIf="mobileedit" href="javascript:void(0);" style="float: right; font-weight: bold;color: #9e9e9e; " (click)="closeMobileEdit()">Cancel</a>
+                      </div>
+                    </div>
+                </div>  
+            </form>
+ 
+            </div>
+             
+
+          </div>
+ 
+        </div>
+
+  
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #profileimagecontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white" style="text-align: center;">Upload Profile Picture</h4>
+    <button type="button" class="close text-whiteX" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff !important;">
+   
+    <p><a href="javascript:void(0);" style="float:right;font-weight: bold;color: #222222 !important; " (click)="modal('Cross click')">X</a></p>
+    <h4 class="modal-title text-white" style="text-align: center;color: #222222 !important;">Upload Profile Picture</h4>
+    <p style="text-align: center;"></p>
+  
+    
+    <form class="needs-validation" name="profilepictureform" [formGroup]="profilepictureform" (ngSubmit)="saveProfilePicture()" novalidate>
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+
+      <ngb-alert type="info" *ngIf="info" [dismissible]="false">{{ info }}</ngb-alert>
+
+      <div class="form-group mb-3" style="width:75%;float:left;">
+        <label for="profilepicture"></label>
+        <input type="file" (change)="fileChangeEvent($event)" formControlName="profilepicture" class="form-control" accept="image/*"
+          [ngClass]="{ 'is-invalid': submitted && formPP.profilepicture.errors }" id="profilepicture" placeholder="Profile Picture" />
+  
+          <div *ngIf="imageError!=''" class="invalid-feedback" style="display: block;">  
+          {{imageError}}
+          </div>
+        <div *ngIf="submitted && formPP.profilepicture.errors" class="invalid-feedback">
+          <div *ngIf="formPP.profilepicture.errors.required">Please select an image to upload</div>
+        </div> 
+      </div>
+      
+      <div class="form-group mb-3" style="width:25%;float:left;">
+          
+        <div class="img-space" style="height: 60px;    padding-left: 70px;">
+        
+          <ng-container *ngIf="isImageSaved; else elseTemplate">
+              <img [src]="cardImageBase64" class="img-responsive" style="height: 50px;" />
+          </ng-container>
+          <ng-template #elseTemplate>
+        
+              <img src="./assets/images/users/sh360-noprofile.png" class="img-responsive" style="height: 50px;" />
+          </ng-template>
+        
+        </div>
+        </div>
+
+
+
+      <div class="form-group mb-0 text-center" *ngIf="!loadingbutton">
+        <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Upload</button>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="loadingbutton">
+        <button class="btn btn-primary btn-block" type="button" disabled="disabled">Please wait...</button>
+      </div>
+
+      
+    </form> 
+  </div>
+</ng-template>
+
+
+<ng-template #changeemailcontactcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white" style="text-align: center;">Verify Your Email Address</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff !important;">
+    <p><a href="javascript:void(0);" style="float:right;font-weight: bold;color: #222222 !important; " (click)="modal('Cross click')">X</a></p>
+    <h4 class="modal-title text-white" style="text-align: center;color: #222222 !important;">Verify Your Email Address</h4>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;color:grey;">A 6-digit code has been sent to</p>
+    <p style="text-align: center;color:#222222;"> {{newEmail}} &nbsp; <a href="javascript:void(0);" style="font-weight: bold;color: #3182ce; " (click)="modal('Cross click')">Change</a></p> 
+
+    
+    <form class="needs-validation" name="emailverifyform" [formGroup]="emailverifyform" (ngSubmit)="saveEmailVerify()" novalidate>
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+
+      <ngb-alert type="info" *ngIf="info" [dismissible]="false">{{ info }}</ngb-alert>
+
+      <div class="form-group mb-3">
+        <label for="emailverificationcode"></label>
+        <input type="password" formControlName="emailverificationcode" class="form-control" autofocus numbersOnly
+          [ngClass]="{ 'is-invalid': submitted && formEV.emailverificationcode.errors }" id="emailverificationcode" placeholder="Verification Code" />
+
+        <div *ngIf="submitted && formEV.emailverificationcode.errors" class="invalid-feedback">
+          <div *ngIf="formEV.emailverificationcode.errors.required">Verification code is required</div>
+        </div>
+        <br/>
+        <p>                                
+        <!--The OTP will expire in <countdown #cd [config]="{leftTime: 300, template: '$!m!:$!s!'}" (event)="handleEvent($event)"></countdown>-->
+        
+        </p> 
+        <p *ngIf="showResend">
+          Didn’t receive the code? <a (click)="resendCode()" class="text-white-50 ml-1" style="color:blue !important;cursor: pointer;">Resend</a>          
+        </p>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="!loadingbutton">
+        <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Verify</button>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="loadingbutton">
+        <button class="btn btn-primary btn-block" type="button" disabled="disabled">Please wait...</button>
+      </div>
+
+      
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #changemobilecontactcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white" style="text-align: center;">Verify Your Mobile Number</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff !important;">
+    <p><a href="javascript:void(0);" style="float:right;font-weight: bold;color: #222222 !important; " (click)="modal('Cross click')">X</a></p>
+    <h4 class="modal-title text-white" style="text-align: center;color: #222222 !important;">Verify Your Mobile Number</h4>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;color:grey;">A 6-digit code has been sent to</p>
+    <p style="text-align: center;color:#222222;"> {{newMobile}} &nbsp; <a href="javascript:void(0);" style="font-weight: bold;color: #3182ce; " (click)="modal('Cross click')">Change</a></p> 
+
+    
+    <form class="needs-validation" name="mobileverifyform" [formGroup]="mobileverifyform" (ngSubmit)="saveMobileVerify()" novalidate>
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+
+      <ngb-alert type="info" *ngIf="info" [dismissible]="false">{{ info }}</ngb-alert>
+
+      <div class="form-group mb-3">
+        <label for="mobileverificationcode"></label>
+        <input type="password" formControlName="mobileverificationcode" class="form-control" autofocus numbersOnly
+          [ngClass]="{ 'is-invalid': submitted && formMV.mobileverificationcode.errors }" id="mobileverificationcode" placeholder="Verification Code" />
+
+        <div *ngIf="submitted && formMV.mobileverificationcode.errors" class="invalid-feedback">
+          <div *ngIf="formMV.mobileverificationcode.errors.required">Verification code is required</div>
+        </div>
+        <br/>
+        <p>                                
+        <!--The OTP will expire in <countdown #cd [config]="{leftTime: 300, template: '$!m!:$!s!'}" (event)="handleEvent($event)"></countdown>-->
+        
+        </p> 
+        <p *ngIf="showResend">
+          Didn’t receive the code? <a (click)="resendCode()" class="text-white-50 ml-1" style="color:blue !important;cursor: pointer;">Resend</a>          
+        </p>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="!loadingbutton">
+        <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Verify</button>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="loadingbutton">
+        <button class="btn btn-primary btn-block" type="button" disabled="disabled">Please wait...</button>
+      </div>
+
+      
+    </form>
+  </div>
+</ng-template>
+
+
+
+<ng-template #resendemailcontactcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white" style="text-align: center;">Verify Your Email Address</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff !important;">
+    <p><a href="javascript:void(0);" style="float:right;font-weight: bold;color: #222222 !important; " (click)="modal('Cross click')">X</a></p>
+    <h4 class="modal-title text-white" style="text-align: center;color: #222222 !important;">Verify Your Email Address</h4>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;color:grey;">A 6-digit code has been sent to your email</p>
+    <form class="needs-validation" name="emailresendverifyform" [formGroup]="emailresendverifyform" (ngSubmit)="resendEmailVerify()" novalidate>
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+
+      <ngb-alert type="info" *ngIf="info" [dismissible]="false">{{ info }}</ngb-alert>
+
+      <div class="form-group mb-3">
+        <label for="emailverificationcode"></label>
+        <input type="password" formControlName="emailverificationcode" class="form-control" autofocus numbersOnly
+          [ngClass]="{ 'is-invalid': submitted && formREV.emailverificationcode.errors }" id="emailverificationcode" placeholder="Verification Code" />
+
+        <div *ngIf="submitted && formREV.emailverificationcode.errors" class="invalid-feedback">
+          <div *ngIf="formREV.emailverificationcode.errors.required">Verification code is required</div>
+        </div>
+         
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="!loadingbutton">
+        <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Verify</button>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="loadingbutton">
+        <button class="btn btn-primary btn-block" type="button" disabled="disabled">Please wait...</button>
+      </div>
+
+      
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #resendmobilecontactcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white" style="text-align: center;">Verify Your Mobile Number</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff !important;">
+    <p><a href="javascript:void(0);" style="float:right;font-weight: bold;color: #222222 !important; " (click)="modal('Cross click')">X</a></p>
+    <h4 class="modal-title text-white" style="text-align: center;color: #222222 !important;">Verify Your Mobile Number</h4>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;color:grey;">A 6-digit code has been sent to your mobile</p>
+    <form class="needs-validation" name="mobileresendverifyform" [formGroup]="mobileresendverifyform" (ngSubmit)="resendMobileVerify()" novalidate>
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+
+      <ngb-alert type="info" *ngIf="info" [dismissible]="false">{{ info }}</ngb-alert>
+
+      <div class="form-group mb-3">
+        <label for="mobileverificationcode"></label>
+        <input type="password" formControlName="mobileverificationcode" class="form-control" autofocus numbersOnly
+          [ngClass]="{ 'is-invalid': submitted && formRMV.mobileverificationcode.errors }" id="mobileverificationcode" placeholder="Verification Code" />
+
+        <div *ngIf="submitted && formRMV.mobileverificationcode.errors" class="invalid-feedback">
+          <div *ngIf="formRMV.mobileverificationcode.errors.required">Verification code is required</div>
+        </div>
+          
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="!loadingbutton">
+        <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Verify</button>
+      </div>
+
+      <div class="form-group mb-0 text-center" *ngIf="loadingbutton">
+        <button class="btn btn-primary btn-block" type="button" disabled="disabled">Please wait...</button>
+      </div>
+
+      
+    </form>
+  </div>
+</ng-template>
+
+<!--
+<ng-template #changecontactcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark">
+    <h4 class="modal-title text-white">Change Contact</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff;">
+    <div class="text-left" *ngIf=" conmsg ">
+      <div *ngIf="successmsg" class="alert alert-success">
+        <span style="color:green;">{{successmsg}}</span>
+      </div>
+    </div>
+    
+    <div class="text-left" *ngIf=" confrm ">
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+
+        
+        <form (ngSubmit)="saveContact()" [formGroup]="validationform">
+        <div class="form-group" style="min-height: 75px;">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" formControlName="email"  [(ngModel)]="email"
+            [ngClass]="{'is-invalid': submitted && form.email.errors}" >
+          <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+            <span *ngIf="form.email.errors.required">Please enter valid email</span>
+            <span *ngIf="form.email.errors?.pattern">Please enter valid email</span>
+          </div>
+        </div>
+   
+        <div class="form-group" style="min-height: 75px;">
+          <label for="mobile" style="width: 100%;">Mobile</label>
+          <input type="text" class="form-control" id="mobilecodedisplay" name="mobilecodedisplay" placeholder="Enter Mobile" formControlName="mobilecodedisplay" [(ngModel)]="mobilecodedisplay" style="float: left;width:10%;" readonly />
+          <input type="hidden" class="form-control" id="mobilecode" name="mobilecode" placeholder="Enter Mobile" formControlName="mobilecode" [(ngModel)]="mobilecode" style="float: left;width:10%;"  />
+
+          <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile" formControlName="mobile" [(ngModel)]="mobile" style="float: left;width:90%;"
+            [ngClass]="{'is-invalid': submitted && form.mobile.errors}" >
+          <div *ngIf="submitted && form.mobile.errors" class="invalid-feedback">
+            <span *ngIf="form.mobile.errors.required">Please enter valid mobile</span>            
+            <span *ngIf="form.mobile.errors?.pattern"> Must be 10 Digit, Only numeric values are allowed</span>
+          </div>
+        </div>
+ 
+
+ 
+        <div class="text-right">
+          <button type="submit" class="btn btn-success">Update</button>
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="modal('close click')">Cancel</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</ng-template>
+-->

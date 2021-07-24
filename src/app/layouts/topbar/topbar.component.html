@@ -1,0 +1,487 @@
+<!-- Topbar Start --> <!--  style="background-color: #2c5282 !important;" -->
+<div class="navbar-custom">
+  <ul class="list-unstyled topnav-menu float-right mb-0">
+    <!--
+    <li class="d-none d-sm-block" >
+      <div style="float: left;width: 100px;padding-top: 25px;">
+        <a routerLink="/crm/patients" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" >
+          <img src="./assets/icon/home-header-icon.svg" style="padding-right:5px;" /> 
+        </a>
+      </div>          
+    </li>
+    <li class="d-none d-sm-block" >
+      <div style="float: left;width: 100px;padding-top: 25px;">
+        <a routerLink="/crm/patients" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" > 
+          <span style="color:#A0AEC0;padding-right:5px;">Patients </span>
+        </a>
+      </div>          
+    </li>  
+    <li class="d-none d-sm-block" >
+      <div style="float: left;width: 100px;padding-top: 25px;">
+        <a routerLink="/crm/casemanagers" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" > 
+          <span style="color:#A0AEC0;padding-right:5px;">Casemanager </span>
+        </a>
+      </div>          
+    </li>
+    <li class="d-none d-sm-block" >
+      <div style="float: left;width: 500px;padding-top: 25px;">
+         
+      </div>          
+    </li>
+    -->
+    <li class="d-none d-sm-block" style="display: none !important;">
+      <!--
+        <form class="app-search">
+        <div class="app-search-box">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search...">
+            <div class="input-group-append">
+              <button class="btn" type="submit">
+                <i class="fe-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      -->
+    </li>
+ <!-- 
+     <li class="d-none d-sm-block" >
+      <div style="float: left;width: 400px;padding-top: 25px;">
+        <a routerLink="/crm/patients" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" >
+          <img src="./assets/icon/total_user.svg" style="padding-right:5px;" />
+          <span style="color:#A0AEC0;padding-right:5px;">Total No of Patients </span>
+          <span style="color:#4A5568;font-weight: 500;font-size: 16px;line-height: 19px;">{{ToppatientTodayCount}}</span>
+        </a>
+      </div>          
+    </li>  
+    <li class="d-none d-sm-block" >
+      <div style="float: left;width: 400px;padding-top: 25px;">
+        <a routerLink="/crm/casemanagers" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" >
+          <img src="./assets/icon/total_user.svg" style="padding-right:5px;" />
+          <span style="color:#A0AEC0;padding-right:5px;">Total No of Casemanager </span>
+          <span style="color:#4A5568;font-weight: 500;font-size: 16px;line-height: 19px;">{{ToppatientTodayCount}}</span>
+        </a>
+      </div>          
+    </li>  
+  -->
+    <li class="dropdown notification-list" ngbDropdown>
+
+<!--
+<p><strong>{{idleState}}</strong></p>
+<p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing | amTimeAgo}}</strong></small></p>
+<button (click)="reset()" *ngIf="timedOut">Restart</button>
+-->
+
+      <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" ngbDropdownToggle id="profileDropdown"
+        href="javascript: void(0);" role="button" aria-haspopup="false" aria-expanded="false">
+        <!--<img src="./assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">-->
+        <span class="pro-user-name ml-1 mr-1" style="color: #718096;">
+          <!-- Hello <b style="color: #718096;">John Due</b> -->
+          <b style="color: #718096;"> {{userInfo.firstName}} {{userInfo.lastName}} </b> 
+        
+        </span>
+        
+        <span *ngIf=" userInfo.profilePicture!='' && userInfo.profilePicture!=null ">
+          <img [src]="userInfoprofilePicture" alt="user-image" class="rounded-circle" />
+        </span>  
+        <span *ngIf=" !userInfo.profilePicture || userInfo.profilePicture=='' ">
+        <img src="./assets/images/users/sh360-noprofile.png" alt="user-image" class="rounded-circle" />
+        </span>  
+        
+        <span class="pro-user-name ml-1">
+          <!--<i class="fas fa-chevron-down" style="color: #768fae;"></i>-->
+          <img src="./assets/icon/icon-down.svg" style="width: 13px;" />
+        </span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="profileDropdown" ngbDropdownMenu>
+        <!--
+        <div class="dropdown-header noti-title">
+          <h6 class="text-overflow m-0">Welcome John Due!</h6>
+        </div>
+        -->
+        <!--
+        <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <i class="fe-user"></i>
+          <span>My Profile</span>
+        </a>
+        <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <i class="fe-settings"></i>
+          <span>Settings</span>
+        </a>
+        <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <i class="fe-lock"></i>
+          <span>Lock Screen</span>
+        </a>
+        -->
+      <!--
+        
+      
+        
+      <a routerLink="/crm/profile" href="javascript:void(0);" class="dropdown-item notify-item"> 
+        <img src="./assets/icon/icon-user-check.svg" style="padding-right:5px;" />
+        <span>My Profile</span>
+      </a>
+      -->
+      
+      <a routerLink="/crm/profile" href="javascript:void(0);" class="dropdown-item notify-item"> 
+        <img src="./assets/icon/icon-user-check.svg" style="padding-right:5px;" />
+        <span>My Profile</span>
+      </a>
+      <!--<a href="javascript:void(0);" class="dropdown-item notify-item" (click)="openModal(changepasswordcontent)">
+        <img src="./assets/icon/icon-user-password.svg" style="padding-right:5px;" />
+        <span>Change Password</span>
+      </a>-->
+        <div class="dropdown-divider"></div>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item notify-item"  (click)="openModal(logoutconfirm)">
+          <!--<i class="fas fa-sign-out-alt"></i>-->
+          <img src="./assets/icon/icon-log-out.svg" style="padding-right:5px;" />
+          <span>Logout</span>
+        </a>
+
+      </div>
+    </li>
+
+    <li class="dropdown notification-list" style="display: none !important;" ngbDropdown>
+      <a class="nav-link dropdown-toggle  waves-effect waves-light" href="javascript: void(0);" role="button"
+        aria-haspopup="false" aria-expanded="false" ngbDropdownToggle id="notificationDropdown">
+        <i class="fe-bell noti-icon" style="color: #718096;"></i>
+        <span class="badge badge-danger rounded-circle noti-icon-badge">4</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg"
+        aria-labelledby="notificationDropdown" ngbDropdownMenu>
+
+        <!-- item-->
+        <div class="dropdown-item noti-title" ngbDropdownItem>
+          <h5 class="m-0">
+            <span class="float-right">
+              <a href="javascript: void(0);" class="text-dark">
+                <small>Clear All</small>
+              </a>
+            </span>Notification
+          </h5>
+        </div>
+
+        <div id="notification-items" class="slimscroll noti-scroll" appSlimScroll>
+          <!-- item-->
+          <a *ngFor="let notification of notificationItems;" href="{{ notification.redirectTo }}"
+            class="dropdown-item notify-item" ngbDropdownItem>
+            <div class="notify-icon bg-soft-{{ notification.bgColor }} text-{{ notification.bgColor }}">
+              <i class="{{ notification.icon }}"></i>
+            </div>
+            <p class="notify-details">{{ notification.text }}
+              <small class="text-muted">{{ notification.subText }}</small>
+            </p>
+          </a>
+        </div>
+
+        <!-- All-->
+        <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+          View All
+        </a>
+      </div>
+    </li>
+
+  <!--
+    <li class="dropdown notification-list">
+      <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light" (click)="logout()">
+        <i class="fe-log-out"></i>
+        
+      </a>
+    </li>
+  -->
+
+    <li class="dropdown notification-list" style="display: none !important;">
+      <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light" (click)="toggleRightSidebar()">
+        <i class="fe-settings noti-icon"></i>
+      </a>
+    </li>
+
+
+  </ul>
+
+  <!-- LOGO -->
+  <div class="logo-box">
+    <a routerLink="/crm/patients" class="logo text-center">
+      <span class="logo-lg">
+        <img src="./assets/images/sh360-logo.svg" alt="" height="50">
+        <!--<img src="./assets/images/logo.png" alt="" height="50">-->
+        <!-- <span class="logo-lg-text-light">Xeria</span> -->
+      </span>
+      <span class="logo-sm">
+        <img src="./assets/images/sh360-logo.svg" alt="" height="25">
+        <!--<img src="./assets/images/logo-sm.png" alt="" height="24">-->
+        <!-- <span class="logo-sm-text-dark">X</span> -->
+      </span>
+    </a>
+  </div> 
+  <ul class="list-unstyled topnav-menu topnav-menu-left m-0" >
+    
+    <li>
+ 
+      <ul class="list-unstyled topnav-menu float-right mb-0">
+        <!--<li class="d-none d-sm-block" >
+          <div style="float: left;width: 100px;padding-top: 25px;">
+            <a routerLink="/crm/patients" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" >
+              <img src="./assets/icon/home-header-icon.svg" style="padding-right:5px;" /> 
+            </a>
+          </div>          
+        </li>-->
+        <!--
+        <li class="d-none d-sm-block" >
+          <div style="float: left;width: 100px;padding-top: 25px;">
+            <a routerLink="/crm/patients" routerLinkActive="active" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" > 
+              <span style="color:#A0AEC0;padding-right:5px;">Patients </span>
+            </a>
+          </div>          
+        </li>  
+        <li class="d-none d-sm-block" >
+          <div style="float: left;width: 130px;padding-top: 25px;">
+            <a routerLink="/crm/casemanagers" routerLinkActive="active" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" > 
+              <span style="color:#A0AEC0;padding-right:5px;">Casemanager </span>
+            </a>
+          </div>         
+        </li>        
+        <li class="d-none d-sm-block" >
+          <div style="float: left;width: 100px;padding-top: 25px;">
+            <a routerLink="/crm/adherencealert" routerLinkActive="active" data-toggle="tab" href="javascript:void(0);" style="cursor: unsetX;" > 
+              <span style="color:#A0AEC0;padding-right:5px;">Configure  </span>
+            </a>
+          </div>         
+        </li>
+        -->        
+      </ul>
+
+    </li>
+    <li style="display: none !important;">
+      <button class="button-menu-mobile waves-effect waves-light" (click)="toggleMobileMenu($event)">
+        <i class="fas fa-bars"></i>
+      </button>
+    </li>
+
+    <li class="d-none d-sm-block" style="display: none !important;">
+        <form class="app-search">
+        <div class="app-search-box">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search...">
+            <div class="input-group-append">
+              <button class="btn" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </li>
+
+    <!--<li class="dropdown d-none d-lg-block" style="display: noneX !important;" >
+      
+      <a routerLink="/dashboard" class="nav-link btn-link" href="javascript: void(0);" id="extraMenu" role="button"
+        aria-haspopup="false" aria-expanded="false">
+        <i class="fe-home"></i>
+        Home
+      </a>
+
+    </li>-->
+     
+    <!--
+    <li class="dropdown d-none d-lg-block" > 
+      <a routerLink="/crm/messages" routerLinkActive="active" class="nav-link btn-link" href="javascript: void(0);" id="extraMenu" role="button"
+        aria-haspopup="false" aria-expanded="false" style="line-height: 15px;"> 
+        <img src="./assets/icon/icon-message.svg" class="active" style="padding: 0px 5px;" />
+        <img src="./assets/icon/icon-message-off.svg" class="inactive" style="padding: 0px 5px;" />
+        My Messages
+      </a>
+    </li>
+    
+    <li class="dropdown d-none d-lg-block" >
+      <a routerLink="/crm/medications" routerLinkActive="active" class="nav-link btn-link" href="javascript: void(0);" id="extraMenu" role="button"
+        aria-haspopup="false" aria-expanded="false"> 
+        <img src="./assets/icon/icon-reminder.svg" class="active" style="padding: 0px 5px;" />
+        <img src="./assets/icon/icon-reminder_off.svg" class="inactive" style="padding: 0px 5px;" />
+        Medication Reminders
+      </a>
+    </li>
+
+    <li class="dropdown d-none d-lg-block" >
+      <a routerLink="/crm/seeallresult" routerLinkActive="active" class="nav-link btn-link" href="javascript: void(0);" id="extraMenu" role="button"
+        aria-haspopup="false" aria-expanded="false"> 
+        <img src="./assets/icon/icon-reminder.svg" class="active" style="padding: 0px 5px;" />
+        <img src="./assets/icon/icon-reminder_off.svg" class="inactive" style="padding: 0px 5px;" />
+        360 View
+      </a>
+    </li>
+    -->
+
+    <li class="dropdown d-none d-lg-block" style="display: none !important;" ngbDropdown>
+      <a class="nav-link dropdown-toggle waves-effect waves-light" href="javascript: void(0);" ngbDropdownToggle id="extraMenu" role="button"
+        aria-haspopup="false" aria-expanded="false">
+        Create New
+        <i class="fas fa-chevron-down"></i>
+      </a>
+      <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="extraMenu">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="fas fa-briefcase"></i>
+          <span>New Projects</span>
+        </a>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="fas fa-user-plus"></i>
+          <span>Create Users</span>
+        </a>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="fas fa-chart-line"></i>
+          <span>Revenue Report</span>
+        </a>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="fas fa-headset"></i>
+          <span>Help & Support</span>
+        </a>
+
+      </div>
+    </li>
+
+    
+  </ul>
+</div>
+<!-- end Topbar -->
+ 
+
+<ng-template #logoutconfirm role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white">Logout message</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background-color: #ffffff !important;margin:0 auto;">
+    <div class="text-left">
+      <form>
+
+        <div class="form-group" style="text-align: center;">
+           
+          <h4>Log out</h4>
+          <label>Are you sure you want to logout now?</label>
+        </div>
+ 
+
+        <div class="text-right">
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="logout()">Okay</button>
+        
+          <button type="button" class="btn btn-info ml-1"
+            (click)="modal('close click')">Cancal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+<ng-template #sessionoutmessageX role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="display: none;">
+    <h4 class="modal-title text-white">Logout message</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background-color: #ffffff !important;margin:0 auto;">
+    <div class="text-left">
+      <form>
+
+        <div class="form-group" style="text-align: center;">
+           
+          <h4>Session Time out</h4>
+          <label>Your current session has been timed-out and you have been logged out. Please login again to continue.</label>
+        </div>
+ 
+
+        <div class="text-right">
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="modal('close click')">Okay</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+<ng-template #changepasswordcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark">
+    <h4 class="modal-title text-white">Change Password</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background: #fff;">
+    <div class="text-left" *ngIf=" pwdmsg ">
+      <div *ngIf="successmsg" class="alert alert-success">
+        <span style="color:green;">{{successmsg}}</span>
+      </div>
+    </div>
+    
+    <div class="text-left" *ngIf=" pwdfrm ">
+
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+       
+        <form (ngSubmit)="savePassword()" [formGroup]="validationpasswordform">
+        <div class="form-group">
+          <label for="cpassword">Current Password</label>
+          <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Enter Current Password" formControlName="cpassword"
+            [ngClass]="{'is-invalid': submitted && form.cpassword.errors}" minlength="8">
+          <div *ngIf="submitted && form.cpassword.errors" class="invalid-feedback">
+            <span *ngIf="form.cpassword.errors.required">Please enter current password</span>
+          </div>
+        </div>
+   
+        <div class="form-group">
+          <label for="npassword">New Password</label>
+          <input type="password" class="form-control" id="npassword" name="npassword" placeholder="Enter New Password" formControlName="npassword"
+            [ngClass]="{'is-invalid': submitted && form.npassword.errors}" minlength="8">
+          <div *ngIf="submitted && form.npassword.errors" class="invalid-feedback">
+            <span *ngIf="form.npassword.errors.required">Please enter new password</span>            
+            <span *ngIf="form.npassword.errors?.pattern">Please enter a password with below requirements</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cnpassword">Confirm Password </label>
+          <input type="password" class="form-control" id="cnpassword" name="cnpassword" placeholder="Re-enter New Password" formControlName="cnpassword"
+            [ngClass]="{'is-invalid': submitted && form.cnpassword.errors}" minlength="8">
+          <div *ngIf="submitted && form.cnpassword.errors" class="invalid-feedback">
+            <span *ngIf="form.cnpassword.errors.required">Please enter confirm password.</span>
+            <span *ngIf="form.cnpassword.errors.mustMatch">Confirm password should be same as new password.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password must meet the following requirements:</label> <br/>
+          - At least 8 characters<br/>
+          - At least one uppercase<br/>
+          - At least one number<br/>
+        </div>
+
+        <div class="text-right">
+          <button type="submit" class="btn btn-success">Confirm</button>
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="modal('close click')">Cancel</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</ng-template>
+
+

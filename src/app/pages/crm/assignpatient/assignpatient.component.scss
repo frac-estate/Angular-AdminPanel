@@ -1,0 +1,44 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css");
+select { font-family: 'FontAwesome', Verdana }
+
+.ms-container {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+
+  
+ngb-tabset ul.nav-pills,   ngb-tabset ul.nav-tabs {
+    width: 30% !important;
+    float: left !important;
+    height: 400px !important;
+  }
+
+  ngb-tabset div.tab-content {
+    width: 65% !important;
+    float: left !important;
+    height: 400px !important;
+  }
+
+/*
+  ngb-tabset input.btn-check {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+*/
+
+ngb-tabset .btn-primary{
+  padding: 10px;
+  margin: 10px;
+  min-width: 120px;
+  border-color: #3182CE !important;
+  color: #3182CE !important;
+  background: #fff !important;
+}
+
+
+.disabledarea {
+  pointer-events: none;
+  opacity: 0.4;
+  }

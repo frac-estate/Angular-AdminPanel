@@ -1,0 +1,132 @@
+<div class="container-fluid">
+
+    <div class="row mb-2">
+      <div class="col-sm-8">
+        <app-page-title title="Import Patients" style="float: left;"></app-page-title>
+       </div>  
+      <div class="col-sm-4">
+        &nbsp; 
+        <!--
+        <a style="background-color: orange ;border: none;border-radius: 5px;margin-left: 10px; margin-top: 20px;float:right;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                    routerLink="/crm/importfailurepatient" ><b>*</b> Import Failure Patients</a>
+       -->
+      </div>
+    </div>  
+  
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body" style="min-height: 300px;">
+                  <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false" style="white-space: pre-line;">
+                    <span *ngIf="errormsg!=1 && errormsg!=2">
+                      {{errormsg}}
+                    </span>
+                    <span *ngIf="errormsg==1">
+                      There are errors in the data imported. You can check and fix the errors <a href="javascript:void(0);" routerLink="/crm/importfailurepatient" >here</a>.<br/>
+                      </span>
+                      <span *ngIf="duplicatemsg">
+                        The file imported has duplicate records.
+                      </span>
+                      
+                      
+                  </ngb-alert>
+                  <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+                  <form (ngSubmit)="saveData()" [formGroup]="validationform">  
+                  <!--<h4 class="header-title m-t-0">Dropzone File Upload</h4>
+                    <p class="text-muted font-13 m-b-30">
+                        DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews.
+                    </p>-->
+                    <!-- file upload -->
+                    <div id="fileuploadbox">
+                        <file-upload class="dropzone" formControlName="patients" name="patients" id="patients"  ></file-upload>
+                        <br/>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success">Upload</button>
+                        <button type="button" class="btn btn-danger ml-1"
+                        (click)="backtopatient()">Exit</button> 
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body" style="min-height: 300px;">
+                  <h4 class="header-title m-t-0" style="margin: 0 0 20px 0;"> Instructions to import patients</h4>
+                    <p class="text-mutedx font-13 m-b-30">
+                      1. Please download the template from the link below
+                    </p>
+                    <p class="text-mutedx font-13 m-b-30">
+                      2. The columns First Name, Last Name and Date of Birth are mandatory.
+                    </p>
+                    <p class="text-mutedx font-13 m-b-30">
+                      3. Please do not edit sheet name or any of the column names
+                    </p>
+                    <p class="text-mutedx font-13 m-b-30">
+                      4. Please upload not more than 200 patients on a single import
+                    </p>
+                    <div class="text-left">
+                      <a href="./assets/download/Patient Upload.xlsx" target="_blank" download>
+                      <button type="button" class="btn btn-primary" style="background-color: #4ac264;border: none;border-radius: 5px;margin-left: 10px;margin-top: 20px;">Download Template</button> 
+                      </a>
+                  </div>
+                </div>
+
+                
+            </div>
+        </div>
+      </div>
+    <!--
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row mb-2">
+  
+              <div class="col-sm-2">
+                &nbsp;
+              </div>
+              <div class="col-sm-8">
+              <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+              <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+               
+              <div class="multi-select-label" style="width: 100%;height: 22px;">
+                <div style="float: left;width: 60%;color: #A0AEC0;">Patients to select from</div>  
+                <div style="float:right;width: 40%;color: #A0AEC0;">Assigned Patients</div>
+              </div>
+   
+              <form (ngSubmit)="saveData()" [formGroup]="validationform">  
+   
+                <div id="mselectbox">
+                    <ng2-dual-list-box formControlName="patients" name="patients" id="patientsNG2" 
+                    [data]="cmpatient" [(ngModel)]="cmmapped" valueField="sh360Id" textField="fullName"
+                                       ></ng2-dual-list-box>
+                </div>
+               <br/>
+              <div class="text-right">
+                <button type="submit" class="btn btn-success">Save Changes</button>
+                <button type="button" class="btn btn-danger ml-1"
+                (click)="backtocasemanager()">Cancel</button> 
+              </div>
+  
+              </form>
+  
+              </div>
+              <div class="col-sm-2">
+                &nbsp;
+              </div>
+            </div>
+  
+       </div>
+          </div>
+        </div> 
+      </div>
+    -->
+    </div>
+    
+  
+  <!-- Case manager model -->
+   
+    

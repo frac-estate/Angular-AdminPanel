@@ -1,0 +1,91 @@
+<router-outlet></router-outlet>
+<!--
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         {{idleState}}
+        <div class="row mrgbtm">
+          <div class="col-md-6">
+              <button type="button" (click)="logout()" class="btn btn-danger">Logout</button>
+          </div>
+          <div class="col-md-6">
+              <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>     
+</div>-->
+<!--
+<div>TIMEOUT: {{idleState}}</div>
+-->
+<ng-template #sessionoutmessage role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="display: none;">
+      <h4 class="modal-title text-white">Logout message</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background-color: #ffffff !important;margin:0 auto;">
+      <div class="text-left">
+
+        <!--<div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modal('close click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                 {{idleState}}
+                <div class="row mrgbtm">
+                  <div class="col-md-6">
+                      <button type="button" (click)="logout()" class="btn btn-danger">Logout</button>
+                  </div>
+                  <div class="col-md-6">
+                      <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+
+        <form>
+  
+          <div class="form-group" style="text-align: center;">
+             
+            <h4>Session Time out</h4>
+            <label style="width:600px;">{{idleState}}</label>
+          </div>
+   
+  
+          <div class="text-right" *ngIf=" !timedOut ">
+            <button type="button" class="btn btn-success ml-1"
+              (click)="modal('close click')">Yes</button>
+
+              <button type="button" class="btn btn-danger ml-1"
+              (click)="logout()">No</button>
+          </div>
+          <div class="text-right" *ngIf=" timedOut ">
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Okay</button>
+
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" [fullScreen] = "true">
+    <img src="./assets/images/sh360-logo.png" alt="" />
+    <p style="color: white" > Please wait, we are getting records... </p></ngx-spinner>

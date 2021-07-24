@@ -1,0 +1,19 @@
+{
+    "result": 1,
+    "message": "Succesfully validated the admin user !!",
+    "dateTime": "2020-07-21T07:17:50.580Z",
+    "httpCode": 200,
+    "payload": {
+        "_id": "5f0450a4c75d0a426ebfc1fd",
+        "mobile": "2424356721",
+        "userId": "5efdc1f3c75d0a426eba036d",
+        "entity": "5f312503e448f355fe86ed53",
+        "validUser": true,
+        "loggedUser": "0ffa67ed-397d-4940-9a32-03a2deb17647",
+        "username": "bruce@gmail.com",
+        "password": "70dbe131ebe4b2b7762a4b6d2f6fb5b6640b80716deffd0fdd608eb94f879e03",
+        "activationCode": "224625",
+        "createdAt": "2020-07-07T10:53:01.282Z",
+        "updatedAt": "2020-07-07T10:53:01.282Z"
+    }
+}

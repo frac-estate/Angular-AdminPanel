@@ -1,0 +1,213 @@
+{
+  "result": 1,
+  "message": "Successfully retrived members",
+  "dateTime": "2020-07-21T09:02:29.260Z",
+  "httpCode": 200,
+  "payload": [{
+    "_id": {
+      "$oid": "5f0abeb9100164a47852c79b"
+    },
+    "lifeCycleStatus": "Preregistered",
+    "firstName": "John",
+    "lastName": "Carter",
+    "birthDate": "1992-07-04",
+    "mobile": "9843411222",
+    "email": "carter@yahoo.com",
+    "gender": "female",
+    "lifeCycleUpdatedDate": "2020-07-14",
+    "activationCode": {
+      "code": "129873",
+      "codeExpiryDate": "2021-07-14"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": {
+      "$oid": "5f31248dce99d416c2cbcd5e"
+    },
+    "providerId": "756765765",
+    "createdAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "updatedAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "__v": 0
+  },{
+    "_id": {
+      "$oid": "5f0dc34ae677d6fa709780d2"
+    },
+    "lifeCycleStatus": "Preregistered",
+    "firstName": "Baskaran",
+    "lastName": "Subbaraman",
+    "birthDate": "1971-02-02",
+    "mobile": "8754499177",
+    "email": "baskar2271@yahoo.com",
+    "gender": "male",
+    "lifeCycleUpdatedDate": "2020-07-14",
+    "activationCode": {
+      "code": "788276",
+      "codeExpiryDate": "2021-07-14"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": {
+      "$oid": "5f31248dce99d416c2cbcd5e"
+    },
+    "providerId": "756765765",
+    "createdAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "updatedAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "__v": 0
+  },{
+    "_id": {
+      "$oid": "5f117f92c75d0a426ecd54a5"
+    },
+    "lifeCycleStatus": "Preregistered",
+    "firstName": "Henry",
+    "lastName": "Brown",
+    "birthDate": "1960-05-30",
+    "mobile": "5435344466",
+    "email": "henry@yahoo.com",
+    "gender": "male",
+    "lifeCycleUpdatedDate": "2020-07-14",
+    "activationCode": {
+      "code": "788276",
+      "codeExpiryDate": "2021-07-14"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": {
+      "$oid": "5f31248dce99d416c2cbcd5e"
+    },
+    "providerId": "756765765",
+    "createdAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "updatedAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "__v": 0
+  },{
+    "_id": {
+      "$oid": "5f117ff1c75d0a426ecd5548"
+    },
+    "lifeCycleStatus": "Registered",
+    "firstName": "Glenn",
+    "lastName": "Harvey",
+    "birthDate": "1982-04-20",
+    "mobile": "9844457612",
+    "email": "harvey@yahoo.com",
+    "gender": "female",
+    "lifeCycleUpdatedDate": "2020-07-14",
+    "activationCode": {
+      "code": "896453",
+      "codeExpiryDate": "2021-07-14"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": {
+      "$oid": "5f31248dce99d416c2cbcd5e"
+    },
+    "providerId": "756765765",
+    "createdAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "updatedAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "__v": 0
+  },{
+    "_id": {
+      "$oid": "5f1180a0c75d0a426ecd55fb"
+    },
+    "lifeCycleStatus": "Registered",
+    "firstName": "Alan",
+    "lastName": "Scott",
+    "birthDate": "1984-03-25",
+    "mobile": "8973598232",
+    "email": "scott@yahoo.com",
+    "gender": "female",
+    "lifeCycleUpdatedDate": "2020-07-14",
+    "activationCode": {
+      "code": "984554",
+      "codeExpiryDate": "2021-07-14"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": {
+      "$oid": "5f31248dce99d416c2cbcd5e"
+    },
+    "providerId": "756765765",
+    "createdAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "updatedAt": {
+      "$date": "2020-07-14T14:38:02.270Z"
+    },
+    "__v": 0
+  },{
+    "_id": {
+      "$oid": "5f3179b5d5335b14b4e577d1"
+    },
+    "lifeCycleStatus": "Preregistered",
+    "firstName": "Derek",
+    "lastName": "Lawson",
+    "birthDate": "1965-11-03",
+    "mobile": "8754499177",
+    "email": "derek@yahoo.com",
+    "gender": "male",
+    "lifeCycleUpdatedDate": "2020-08-10",
+    "activationCode": {
+      "code": "663199",
+      "codeExpiryDate": "2021-08-10"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": "5f31248dce99d416c2cbcd5e",
+    "providerId": "6456546546",
+    "createdAt": {
+      "$date": "2020-08-10T16:45:41.312Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-10T16:45:41.312Z"
+    },
+    "__v": 0
+  },{
+    "_id": {
+      "$oid": "5f472b82b6f4463e67cc85a7"
+    },
+    "lifeCycleStatus": "Preregistered",
+    "firstName": "Alagirivimal",
+    "lastName": "Kottaimuthu",
+    "birthDate": "1984-06-05",
+    "mobile": "9841486644",
+    "email": "avimal@yahoo.com",
+    "gender": "male",
+    "lifeCycleUpdatedDate": "2020-08-27",
+    "activationCode": {
+      "code": "240830",
+      "codeExpiryDate": "2021-08-27"
+    },
+    "entityId": {
+      "$oid": "5f312503e448f355fe86ed53"
+    },
+    "sponsorId": "5f31248dce99d416c2cbcd5e",
+    "providerId": "6456546546",
+    "createdAt": {
+      "$date": "2020-08-27T03:41:54.140Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-27T03:41:54.140Z"
+    },
+    "__v": 0
+  }]
+}

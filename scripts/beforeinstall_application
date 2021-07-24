@@ -1,0 +1,7 @@
+#!/bin/bash
+
+touch /usr/share/nginx/html/test
+cd /usr/share/nginx/html/
+rm -rf *
+
+

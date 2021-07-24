@@ -1,0 +1,752 @@
+<div class="container-fluid">
+    
+    <!--
+    <div class="row mb-2">
+      <div class="col-sm-8">
+        <app-page-title title="Case Managers"></app-page-title>
+      </div>  
+      <div class="col-sm-4">  
+        <div class="card-body pt-0" style="padding: 10px !important;margin: 10px 0px;text-align: center;">
+          <img src="./assets/icon/total_casemanager_count_top.svg" />
+          <span style="padding: 0px 20px;">TOTAL NO. OF CASE MANAGERS</span>
+          <span style="font-size: 20px;text-align: right;color: #2D3748;font-weight: bold;">{{totalSize}}</span>
+        </div> 
+      </div>
+    </div>-->  
+
+    <div class="row mt-2">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body">
+            
+            <div class="row mb-2">
+              <div class="col-sm-3">
+                <div class="page-title-box">
+                  <h4 class="page-title" style="float: left; ">Case Managers</h4>
+                  <span [ngStyle]="{'display':isLoading === true ? 'none' : 'block' }" style="margin-left: 250px;margin-top: 65px;position: absolute;float: right;z-index: 999;width: 160px;">                  
+                    <a style="color: #3182CE;border: none;border-radius: 5px;" href="javascript: void(0);" class="mb-2" (click)="openModal(filtercasemanagercontent)">
+                    Filter  <img src="./assets/icon/icon-filter.svg" style="width: 15px;top: -2px;position: relative;left: 10px;" />
+                  </a>
+                  <a style="color: #FEB2B2;border: none;border-radius: 5px;margin-left: 20px;" *ngIf=" nameFilterData.length > 0 || statusFilterData.length > 0 " href="javascript: void(0);" class="mb-2" (click)="filterclearData()">
+                    Clear Filter
+                  </a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-sm-3" [ngStyle]="{'display':isLoading === true ? 'none' : 'block' }">
+                <div class="card-body pt-0" style="padding: 10px !important;margin: 0px 0px;text-align: center;">
+                <img src="./assets/icon/total_casemanager_count_top.svg" />
+                <span style="padding: 0px 20px;">TOTAL NO. OF CASE MANAGERS</span>
+                <span style="font-size: 20px;text-align: right;color: #2D3748;font-weight: bold;">{{totalSize}}</span>
+                </div> 
+              </div>
+              <div class="col-sm-6" [ngStyle]="{'display':isLoading === true ? 'none' : 'block' }">
+                <div class="text-sm-right">
+                  <a style="background-color: #3182CE;border: none;border-radius: 5px;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                    (click)="openModal(casemanagercontent)"><b>+</b> Add Casemanager</a>
+
+                    <a style="background-color: #3182CE;border: none;border-radius: 5px;margin-left: 10px;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                    routerLink="/crm/importcasemanager" ><b>+</b> Import Casemanagers</a>
+
+                    <a style="background-color: orange;border: none;border-radius: 5px;margin-left: 10px; " href="javascript: void(0);" class="btn btn-danger mb-2"
+                    routerLink="/crm/importfailurecasemanager" ><b>*</b> Import Error</a>
+
+                    <a style="background-color: #4ac264;border: none;border-radius: 5px;margin-left: 10px;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                    (click)="openRefreshModal(refreshpatientcontent)">Refresh</a> 
+
+                    <!--<a href="javascript:void(0);" target="_blank" style="filter: grayscale(1); opacity: 0.5; cursor: default; ">
+                      <img src="./assets/icon/arrow-down-circle.svg" style="width: 33px;top: -5px;position: relative;left: 5px;" />
+                    </a>-->
+                </div>
+              </div>
+            </div>  
+ 
+  <div class="table-responsive"  [ngStyle]="{'display':isLoading === true ? 'none' : 'block' }" >
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-centered table-hover mb-0">
+      <thead>
+        <tr>
+          <th>ID <span class="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+          <th>First name <span class="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+          <th>Last name <span class="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+          <th>Patients <span class="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+          <th>Status <span class="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+          <th style="width: 120px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of paginatedContactData |filter:term; let i=index">
+          <td class="table-user">
+              {{i + 1}}
+          </td>
+          <td>
+            {{contact.firstName}}
+          </td>
+          <td>
+            {{contact.lastName}}
+          </td>
+          <td>
+              {{contact.patients}}
+          </td>                   
+          <td>
+
+            <div *ngIf=" contact.isActive ">
+              <img src="./assets/icon/icon_active.svg" title="Active" alt="Active" />
+              Active
+            </div>
+            <div *ngIf=" !contact.isActive " style="color:#ED8936;">
+              <img src="./assets/icon/icon_inactive.svg" title="Inactive" alt="Inactive" />
+              Inactive
+            </div>          
+              
+            </td>
+          <td>
+            <a (click)="openEditModal(contact.id,contact.sh360Id,editcasemanagercontent)" href="javascript:void(0);" class="action-icon"> <img src="./assets/icon/new-edit-icon.svg" title="Edit" alt="Edit" /></a>
+            <a (click)="openAssignModal(contact.id,contact.sh360Id,assigncasemanagercontent)" href="javascript:void(0);" class="action-icon">  <img src="./assets/icon/new-assign-icon.svg" title="Assign" alt="Assign" /> </a>
+            <a href="javascript:void(0);" class="action-icon">  <img src="./assets/icon/new-deactive-icon.svg" title="Deactivate" alt="Deactivate" style="filter: grayscale(100%);opacity: 0.5;" /> </a>
+            <a href="javascript:void(0);" class="action-icon">  <img src="./assets/icon/new-delete-icon.svg" title="Delete" alt="Delete" style="filter: grayscale(100%);opacity: 0.5;" /> </a>
+           
+          </td>
+        </tr>
+      </tbody>
+    </table>
+     
+  </div>
+<!--
+<div class="table-responsive"  [ngStyle]="{'display':isLoading === true ? 'block' : 'none' }" >
+  <div class="text-center" style="min-height:500px"> <img src="./assets/images/loaderbig.gif" style="width:400px" alt="" /></div>
+</div>
+-->
+            <!--
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <form class="form-inline">
+                  <div class="form-group mb-2">
+                    <label class="sr-only">Search</label>
+                    <input class="form-control" name="search" placeholder="Search..." [(ngModel)]="term">
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-8">
+                <div class="text-sm-right">
+                  <a style="background-color: #3182CE;border: none;border-radius: 5px;" href="javascript: void(0);" class="btn btn-danger mb-2"
+                    (click)="openModal(casemanagercontent)"><b>+</b> Add Casemanager</a>
+                </div>
+              </div>
+            </div>
+          -->
+            <!--
+            <div class="table-responsive">
+              <table class="table table-centered table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Patients</th>
+                    <th>Status</th>
+                    <th style="width: 120px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let contact of paginatedContactData |filter:term; let i=index">
+                    <td class="table-user">
+                        {{i + 1}}
+                    </td>
+                    <td>
+                      {{contact.firstName}}
+                    </td>
+                    <td>
+                      {{contact.lastName}}
+                    </td>
+                    <td>
+                        {{contact.patients}}
+                    </td>                   
+                    <td>
+
+                      <div *ngIf=" contact.isActive ">
+                        <img src="./assets/icon/icon_active.svg" title="Active" alt="Active" />
+                        Active
+                      </div>
+                      <div *ngIf=" !contact.isActive " style="color:#ED8936;">
+                        <img src="./assets/icon/icon_inactive.svg" title="Inactive" alt="Inactive" />
+                        Inactive
+                      </div>          
+                        
+                      </td>
+                    <td>
+                      <a (click)="openEditModal(contact.id,contact.sh360Id,editcasemanagercontent)" href="javascript:void(0);" class="action-icon"> <img src="./assets/icon/new-edit-icon.svg" /></a>
+                      <a (click)="openAssignModal(contact.id,contact.sh360Id,assigncasemanagercontent)" href="javascript:void(0);" class="action-icon">  <img src="./assets/icon/new-assign-icon.svg" title="Assign" alt="Assign" /> </a>
+                      <a href="javascript:void(0);" class="action-icon">  <img src="./assets/icon/new-deactive-icon.svg" title="Deactivate" alt="Deactivate" style="filter: grayscale(100%);opacity: 0.5;" /> </a>
+                      <a href="javascript:void(0);" class="action-icon">  <img src="./assets/icon/new-delete-icon.svg" title="Delete" alt="Delete" style="filter: grayscale(100%);opacity: 0.5;" /> </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="pagination pagination-rounded justify-content-end my-2">
+              <ngb-pagination (pageChange)="onPageChange($event)" [pageSize]="pageSize" [(page)]="page"
+                [collectionSize]="totalSize"></ngb-pagination>
+            </ul>
+          -->
+          </div>
+        </div>
+      </div> 
+    </div>
+  
+  </div>
+  
+
+<!-- Case manager model -->
+
+  
+<ng-template #filtercasemanagercontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="background-color: #ffffff !important;">
+    <h4 class="modal-title text-whiteX">Filter Case Manager List</h4>
+    <span>                  
+      <a style="color: #FEB2B2;border: none;border-radius: 5px;margin-left: 20px;" *ngIf=" nameFilterData.length > 0 || statusFilterData.length > 0 " href="javascript: void(0);" class="mb-2" (click)="filterclearData()">
+        Clear Filter
+      </a>
+    </span>
+    <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background-color: #ffffff;">
+    <div class="text-left">
+      
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+      <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+
+
+
+      <form (ngSubmit)="filterData()" [formGroup]="filtervalidationform">
+
+        
+        <div class="container">
+          <ngb-tabset
+          justify="justified"
+          type="pills"
+          orientation="vertical"
+          [destroyOnHide]="false">
+          <!-- 
+            <ngb-tab>
+              <ng-template ngbTabTitle>Status</ng-template>
+              <ng-template ngbTabContent> 
+                <div class="form-group" style=" width: 100%;height: 20px;"> 
+                  Status
+                </div>  
+                <div class="form-group" style=" width: 100%;"> 
+ 
+
+<label class="btn btn-primary" for="btn-checks1"><input type="checkbox" class="btn-check" id="btn-checks1" autocomplete="off" formControlName="status_active" /> Active</label>
+ 
+<label class="btn btn-primary" for="btn-checks2"><input type="checkbox" class="btn-check" id="btn-checks2" autocomplete="off" formControlName="status_inactive" /> Inactive</label>
+ 
+<label class="btn btn-primary" for="btn-checks3"><input type="checkbox" class="btn-check" id="btn-checks3" autocomplete="off" formControlName="status_pending" /> Pending</label>
+   
+                </div> 
+
+              </ng-template>
+            </ngb-tab>
+          --> 
+            <ngb-tab>
+              <ng-template ngbTabTitle>Alphabetically</ng-template>
+              <ng-template ngbTabContent>
+                  
+                <div class="form-group" style=" width: 100%;display:none;"> 
+ 
+                  <label class="btn btn-primary" for="btn-checks1"><input type="checkbox" class="btn-check" id="btn-checks1" autocomplete="off" formControlName="status_active" /> Active</label>
+                   
+                  <label class="btn btn-primary" for="btn-checks2"><input type="checkbox" class="btn-check" id="btn-checks2" autocomplete="off" formControlName="status_inactive" /> Inactive</label>
+                   
+                  <label class="btn btn-primary" for="btn-checks3"><input type="checkbox" class="btn-check" id="btn-checks3" autocomplete="off" formControlName="status_pending" /> Pending</label>
+                     
+                </div> 
+                
+                <div class="form-group" style=" width: 100%;height: 20px;">
+                  <input (click)="updateboxarea(1)" type="radio" name="alpharadio" class="btn-radio" id="btn-radio1" name="checkboxareavalue" formControlName="checkboxareavalue" autocomplete="off" [(ngModel)]="checkboxareavalue" [value]="1" /><label for="btn-radio1"> Choose Alphabetic Groups</label>
+                </div>  
+                <div id="checkboxarea" [ngClass]="checkboxarea == true ? 'form-group' : 'form-group disabledarea'"  style=" width: 100%;height: 200px;"> 
+ 
+
+                  <label class="btn btn-primary" for="btn-check1"><input type="checkbox" class="btn-check" id="btn-check1" autocomplete="off" name="alphselectbox" formControlName="alphselectbox1" /> A-C</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check2"><input type="checkbox" class="btn-check" id="btn-check2" autocomplete="off" name="alphselectbox" formControlName="alphselectbox2" /> D-F</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check3"><input type="checkbox" class="btn-check" id="btn-check3" autocomplete="off" name="alphselectbox" formControlName="alphselectbox3" /> G-I</label>
+                                     
+                  
+                  <label class="btn btn-primary" for="btn-check4"><input type="checkbox" class="btn-check" id="btn-check4" autocomplete="off" name="alphselectbox" formControlName="alphselectbox4" /> J-L</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check5"><input type="checkbox" class="btn-check" id="btn-check5" autocomplete="off" name="alphselectbox" formControlName="alphselectbox5" /> M-O</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check6"><input type="checkbox" class="btn-check" id="btn-check6" autocomplete="off" name="alphselectbox" formControlName="alphselectbox6" /> P-R</label>
+                                     
+                  
+                  <label class="btn btn-primary" for="btn-check7"><input type="checkbox" class="btn-check" id="btn-check7" autocomplete="off" name="alphselectbox" formControlName="alphselectbox7" /> S-U</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check8"><input type="checkbox" class="btn-check" id="btn-check8" autocomplete="off"  name="alphselectbox" formControlName="alphselectbox8"/> V-Z</label>
+                   
+                </div> 
+
+                
+                <div class="form-group" style=" width: 100%;height: 20px;"  >
+                  <input (click)="updateboxarea(2)" type="radio" name="alpharadio" class="btn-radio" id="btn-radio2" name="inputboxareavalue" formControlName="inputboxareavalue" autocomplete="off" [(ngModel)]="inputboxareavalue" [value]="1" /> <label for="btn-radio2"> Choose Specific Alphabets</label> 
+                </div>  
+                
+                <div id="inputboxarea" [ngClass]="inputboxarea == true ? 'form-group' : 'for
+                m-group disabledarea'" style=" width: 100%;height: 50px;"> 
+                   <input type="text" class="form-control" placeholder="(eg) A,B,"  id="alphainputbox" name="alphainputbox" formControlName="alphainputbox" />
+                   <br/><span>You can type in commas</span>
+                </div>  
+                  
+              </ng-template>
+            </ngb-tab>
+              
+             
+          </ngb-tabset>
+          </div>
+ 
+
+        <div class="text-right">
+          <button type="submit" class="btn btn-success">Apply Filter</button>
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="modal('close click')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+  
+<ng-template #casemanagercontent role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="background-color: #ffffff !important;">
+      <h4 class="modal-title text-whiteX">Add Case Manager</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background-color: #ffffff;">
+      <div class="text-left">
+        
+        <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+        <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+
+        <form (ngSubmit)="saveData()" [formGroup]="validationform">
+   
+            <div class="form-group">
+                <label for="firstname">First Name <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter First Name" formControlName="firstname"
+                  [ngClass]="{'is-invalid': submitted && form.firstname.errors}">
+                <div *ngIf="submitted && form.firstname.errors" class="invalid-feedback">
+                  <span *ngIf="form.firstname.errors.required">Please enter first name.</span>
+                </div>
+              </div> 
+      
+              <div class="form-group">
+                <label for="lastname">Last Name <span style="color:red;">*</span></label>
+                <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" formControlName="lastname"
+                  [ngClass]="{'is-invalid': submitted && form.lastname.errors}">
+                <div *ngIf="submitted && form.lastname.errors" class="invalid-feedback">
+                  <span *ngIf="form.lastname.errors.required">Please enter last name.</span>
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label for="phone" style="width:100%;">Mobile Number <span style="color:red;">*</span></label>
+                <input type="text" id="phonecode" class="form-control" placeholder="1" formControlName="phonecode"
+                  [ngClass]="{'is-invalid': submitted && form.phonecode.errors}" [(ngModel)]="phonecodeValue" style="width:25%;float:left;">
+                <input type="text" id="phone" class="form-control" placeholder="Enter Mobile Number" formControlName="phone"
+                  [ngClass]="{'is-invalid': ismobileEntered && form.phone.errors}" minlength="10" maxlength="10" (keypress)="validateQty($event)" (keyup)="mobileEntered()" style="width:75%;float:left;"
+                  >
+                <div *ngIf="submitted && form.phonecode.errors" class="invalid-feedback">
+                  <span *ngIf="form.phonecode.errors.required">Please enter country code.</span>
+                </div>
+                <div *ngIf="ismobileEntered && form.phone.errors" class="invalid-feedback">
+                  <span *ngIf="form.phone.errors.required">Please enter mobile.</span>            
+                  <span *ngIf="form.phone.errors?.pattern"> Must be 10 Digit, Only numeric values are allowed.</span>
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="email">Email Address <span style="color:red;">*</span></label>
+                <input type="text" id="email" class="form-control" placeholder="Enter Email Address" formControlName="email"
+                [ngClass]="{'is-invalid': isemailEntered && form.email.errors}" (keyup)="emailEntered()">
+                <!--<div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+                  <span *ngIf="form.email.errors.required">This value is required.</span>
+                  <span *ngIf="form.email.errors.pattern">Please enter valid email.</span>
+                </div>-->
+                <div *ngIf="isemailEntered && form.email.errors" class="invalid-feedback">
+                  <span *ngIf="form.email.errors.required">Please enter email.</span>
+                  <span *ngIf="form.email.errors?.pattern">Please enter valid email.</span>
+                </div> 
+              </div>
+              <div class="form-group">
+                &nbsp;
+              </div>
+              <div class="form-group">
+                <p style="float: right;">Fields marked with <span style="color:red;">*</span> are mandatory</p>
+              </div>
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Add</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+    
+<ng-template #editcasemanagercontent role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="background-color: #ffffff !important;">
+      <h4 class="modal-title text-whiteX">Edit Case Manager</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background-color: #ffffff;">
+      <div class="text-left"> 
+                
+        <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+        <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+
+        <form (ngSubmit)="saveEditData(contactInfo)" [formGroup]="editvalidationform">
+  
+          <div class="form-group">
+            <label for="firstname">First Name <span style="color:red;">*</span></label>
+            <input type="text" class="form-control" id="firstname" placeholder="Enter First Name" formControlName="firstname"
+              [ngClass]="{'is-invalid': submitted && editform.firstname.errors}" [(ngModel)]="contactInfo.firstName" />
+            <div *ngIf="submitted && editform.firstname.errors" class="invalid-feedback">
+              <span *ngIf="editform.firstname.errors.required">Please enter first name.</span>
+            </div>
+          </div> 
+  
+          <div class="form-group">
+            <label for="lastname">Last Name <span style="color:red;">*</span></label>
+            <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" formControlName="lastname"
+              [ngClass]="{'is-invalid': submitted && editform.lastname.errors}" [(ngModel)]="contactInfo.lastName" />
+            <div *ngIf="submitted && editform.lastname.errors" class="invalid-feedback">
+              <span *ngIf="editform.lastname.errors.required">Please enter last name.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="phone" style="width:100%;">Mobile Number <span style="color:red;">*</span></label>
+            <input type="text" id="phonecode" class="form-control" placeholder="1" formControlName="phonecode" style="width:25%;float: left;"
+                  [ngClass]="{'is-invalid': submitted && editform.phonecode.errors}" [(ngModel)]="contactInfo.mobile.extn" >
+            <input type="text" id="phone" class="form-control" placeholder="Enter Mobile Number" formControlName="phone"
+            [ngClass]="{'is-invalid': ismobileEntered && editform.phone.errors}" minlength="10" maxlength="10" (keypress)="validateQty($event)" (keyup)="mobileEditEntered()" style="width:75%;float:left;" [(ngModel)]="contactInfo.mobile.number" />
+            <div *ngIf="submitted && editform.phonecode.errors" class="invalid-feedback">
+              <span *ngIf="editform.phonecode.errors.required">Please enter country code.</span>
+            </div>
+            <div *ngIf="ismobileEntered && editform.phone.errors" class="invalid-feedback">
+              <span *ngIf="editform.phone.errors.required">Please enter mobile.</span>            
+              <span *ngIf="editform.phone.errors?.pattern"> Must be 10 Digit, Only numeric values are allowed.</span>
+            </div> 
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span style="color:red;">*</span></label>
+            <input type="text" id="email" class="form-control" placeholder="Enter Email Address" formControlName="email"
+            [ngClass]="{'is-invalid': isemailEntered && editform.email.errors}" (keyup)="emailEditEntered()" [(ngModel)]="contactInfo.email.address" />
+            <!--<div *ngIf="submitted && editform.email.errors" class="invalid-feedback">
+              <span *ngIf="editform.email.errors.required">This value is required.</span>
+              <span *ngIf="editform.email.errors.pattern">Please enter valid email.</span>
+            </div>-->
+            <div *ngIf="isemailEntered && editform.email.errors" class="invalid-feedback">
+              <span *ngIf="editform.email.errors.required">Please enter email.</span>
+              <span *ngIf="editform.email.errors?.pattern">Please enter valid email.</span>
+            </div> 
+          </div>
+          
+          <div class="form-group">
+            &nbsp;
+          </div>
+          <div class="form-group">
+            <p style="float: right;">Fields marked with <span style="color:red;">*</span> are mandatory</p>
+          </div>
+
+  
+          
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Contacts model  -->
+  <!--
+  <ng-template #content role="document" let-modal="close">
+    <div class="modal-header bg-dark">
+      <h4 class="modal-title text-white">Magic Link</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3">
+      <div class="text-left">
+        <form (ngSubmit)="saveData()" [formGroup]="validationform">
+   
+          <div class="form-group">
+            <img src="../../../../assets/icon/noun_magic_3374998.svg" />
+          </div>
+          
+  
+          <div class="form-group">
+            <label>A password reset magic link has been sent to <br/>
+              your registered email ID <b>apollo.....@gmail.com</b>
+              </label> <br/> 
+          </div>
+  
+          <div class="text-right">
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  -->
+  
+  <!--
+    <ng-template #content role="document" let-modal="close">
+    <div class="modal-header bg-dark">
+      <h4 class="modal-title text-white">Change Password</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3">
+      <div class="text-left">
+        <form (ngSubmit)="saveData()" [formGroup]="validationform">
+  
+          <div class="form-group">
+            <label for="name">Current Password</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Current Password" formControlName="name"
+              [ngClass]="{'is-invalid': submitted && form.name.errors}">
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <span *ngIf="form.name.errors.required">This value is required.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <p style="float: right;">Forgot Current Password? <a href="">Try the magic link</a></p>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">New Password</label>
+            <input class="form-control" id="email" placeholder="Enter New Password" formControlName="email"
+              [ngClass]="{'is-invalid': submitted && form.email.errors}">
+            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+              <span *ngIf="form.email.errors.required">This value is required.</span>
+              <span *ngIf="form.email.errors.pattern">Please enter valid email.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Confirm Password </label>
+            <input type="text" class="form-control" placeholder="Re-enter New Password" formControlName="phone"
+              [ngClass]="{'is-invalid': submitted && form.phone.errors}" minlength="10">
+            <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
+              <span *ngIf="form.phone.errors.required">This value is required.</span>
+              <span *ngIf="form.phone.errors.minlength">Phone number must be 10 characters.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label>Password must meet the following requirements:</label> <br/>
+            - At least one letter<br/>
+            - At least one capital letter<br/>
+            - At lease one number<br/>
+            - Be at least 8 characters<br/>
+          </div>
+  
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Confirm</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+-->
+  
+  <!--
+  <ng-template #content role="document" let-modal="close">
+    <div class="modal-header bg-dark">
+      <h4 class="modal-title text-white">Add Patients in Bulk</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3">
+      <div class="text-left">
+        <form (ngSubmit)="saveData()" [formGroup]="validationform">
+  
+          <div class="form-group">
+            <label for="email">Upload File * </label>
+            <input type="file" class="form-control" placeholder="Enter Confirm Password" formControlName="phone"
+              [ngClass]="{'is-invalid': submitted && form.phone.errors}" minlength="10">
+            <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
+              <span *ngIf="form.phone.errors.required">This value is required.</span>
+              <span *ngIf="form.phone.errors.minlength">Phone number must be 10 characters.</span>
+            </div>
+          </div>
+   
+  
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Upload</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  -->
+  
+  <!--
+  <ng-template #content role="document" let-modal="close">
+    <div class="modal-header bg-dark">
+      <h4 class="modal-title text-white">Add Patient</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3">
+      <div class="text-left">
+        <form (ngSubmit)="saveData()" [formGroup]="validationform">
+  
+          <div class="form-group">
+            <label for="name">First Name * </label>
+            <input type="text" class="form-control" id="name" placeholder="Enter First Name" formControlName="name"
+              [ngClass]="{'is-invalid': submitted && form.name.errors}">
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <span *ngIf="form.name.errors.required">This value is required.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Last Name * </label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Last Name" formControlName="name"
+              [ngClass]="{'is-invalid': submitted && form.name.errors}">
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <span *ngIf="form.name.errors.required">This value is required.</span>
+            </div>
+          </div>
+  
+          
+          <div class="form-group">
+            <label>Date of Birth * </label>
+            <input type="date" class="form-control" placeholder="Enter Date of Birth" formControlName="phone"
+              [ngClass]="{'is-invalid': submitted && form.phone.errors}" minlength="10">
+            <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
+              <span *ngIf="form.phone.errors.required">This value is required.</span>
+              <span *ngIf="form.phone.errors.minlength">Phone number must be 10 characters.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label>Zipcode * </label>
+            <input class="form-control" placeholder="Enter Zipcode" formControlName="location"
+              [ngClass]="{'is-invalid': submitted && form.location.errors}">
+            <div *ngIf="submitted && form.location.errors" class="invalid-feedback">
+              <span *ngIf="form.location.errors.required">This value is required.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email ID * </label>
+            <input class="form-control" id="email" placeholder="Enter Email ID" formControlName="email"
+              [ngClass]="{'is-invalid': submitted && form.email.errors}">
+            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+              <span *ngIf="form.email.errors.required">This value is required.</span>
+              <span *ngIf="form.email.errors.pattern">Please enter valid email.</span>
+            </div>
+          </div>
+  
+  
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  -->
+  <!--
+    <ng-template #content role="document" let-modal="close">
+    <div class="modal-header bg-dark">
+      <h4 class="modal-title text-white">Add Contacts</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3">
+      <div class="text-left">
+        <form (ngSubmit)="saveData()" [formGroup]="validationform">
+  
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="name"
+              [ngClass]="{'is-invalid': submitted && form.name.errors}">
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <span *ngIf="form.name.errors.required">This value is required.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input class="form-control" id="email" placeholder="Enter email" formControlName="email"
+              [ngClass]="{'is-invalid': submitted && form.email.errors}">
+            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+              <span *ngIf="form.email.errors.required">This value is required.</span>
+              <span *ngIf="form.email.errors.pattern">Please enter valid email.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label>Phone </label>
+            <input type="text" class="form-control" placeholder="Enter phone number" formControlName="phone"
+              [ngClass]="{'is-invalid': submitted && form.phone.errors}" minlength="10">
+            <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
+              <span *ngIf="form.phone.errors.required">This value is required.</span>
+              <span *ngIf="form.phone.errors.minlength">Phone number must be 10 characters.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label>Location </label>
+            <input class="form-control" placeholder="Enter location" formControlName="location"
+              [ngClass]="{'is-invalid': submitted && form.location.errors}">
+            <div *ngIf="submitted && form.location.errors" class="invalid-feedback">
+              <span *ngIf="form.location.errors.required">This value is required.</span>
+            </div>
+          </div>
+  
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  -->
+
+ 

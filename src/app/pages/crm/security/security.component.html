@@ -1,0 +1,285 @@
+<div class="container-fluid" style="height: 100%;">
+    <div class="row">
+  
+  
+      <div class="col-xl-12">
+        <div class="card center-screen-main">
+         
+          
+          <div class="message-card-body">
+  
+            
+            <div id="message-box-0" class="card-body" *ngIf=" !loading ">
+  
+              <div class="center-screen-mid" >
+                <div>
+                  <img src="./assets/images/users/sh360-noprofile.png" style="width: 100px;padding: 20px;" />
+                </div>
+                <p>
+                  Please wait profile information loading
+                </p>
+              </div>
+  
+            </div>
+  
+            <div id="message-box-1" class="card-body" style="margin: 0 auto;width: 60%;" *ngIf="loading">
+   
+              <div class="center-screen-med profile-widget" >
+                <div class="inbox-item">
+                  <div class="inbox-item-img" *ngIf = " !staffInfo.profilePicture || staffInfo.profilePicture==null ">
+                    <img src="./assets/images/users/sh360-noprofile.png" class="rounded-circle" alt="">
+                  </div>
+                  
+                  <div class="inbox-item-img" *ngIf = " staffInfo.profilePicture!='' && staffInfo.profilePicture!=null ">
+                    <img [src]="staffInfo.profilePicture" class="rounded-circle" alt="">
+                  </div>
+                  <!--<div class="inbox-item-img-icon"><img src="./assets/icon/profile-edit-icon.svg" class="rounded-circle" alt=""></div>-->
+                  <div class="inbox-item-author">
+                    <p class="inbox-item-name">{{staffInfo.firstName}} {{staffInfo.lastName}}</p>
+                    <div class="inbox-item-name" style="float: right;">
+                      <span>
+                        <a href="javascript:void(0);" routerLink="/crm/patients" class="mouse-pointer" style="font-style: normal; font-weight: normal; font-size: 18px; line-height: 25px; text-align: center; color: #222222;">
+                          <img src="./assets/sh360icons/Back.png" /> Go Back
+                        </a>
+                      </span>
+                    </div>
+                  </div>     
+                  
+                  
+                </div>
+                <div class="tab-head" style="margin-right: 30px;color: #aebcc3;border-bottom: 2px solid #aebcc3;">
+                  <a href="javascript:void(0);" routerLink="/crm/profile" style="color: #aebcc3;">Profile Information</a>
+                </div>
+                <div class="tab-head">
+                  <a href="javascript:void(0);">Security</a>
+                </div>
+                
+                <hr class="med-solid-line">       
+              </div>
+  
+              <div class="form-section" style="width: 60%;margin: 0 auto;">
+   
+                <div class="row">
+                  <div class="cols-6">
+                    <!--<button class="btn btn-info" style="margin: auto;font-weight: bold;color: #3182ce;margin-top: 50px;background: #fff;border: 1px solid #3182ce;" (click)="openModalSecurity(changesecuritycontent)">
+                      <img src="./assets/icon/icon-user-security.svg" style="padding-right:5px;" />
+                      <span>Update Security Questions</span>
+                   </button>-->
+                   <button class="btn btn-info" style="margin: auto;font-weight: bold;color: #3182ce;margin-top: 50px;background: #fff;border: 1px solid #3182ce;" (click)="openModalSecurity(changesecuritycontent)">
+                    <img src="./assets/icon/icon-user-security.svg" style="padding-right:5px;" />
+                    <span>Update Security Questions</span>
+                 </button>
+                  </div>
+                  <div class="cols-6" style="padding-left: 25px;">
+                    <button class="btn btn-info" style="margin: auto;font-weight: bold;color: #3182ce;margin-top: 50px;background: #fff;border: 1px solid #3182ce;" (click)="openModal(changepasswordcontent)">
+                      <img src="./assets/icon/icon-user-password.svg" style="padding-right:5px;" />
+                      <span>Change Password</span>
+                   </button>
+                  </div>
+
+                </div>
+                
+
+                <!--<button class="btn btn-info" style="margin: auto;font-weight: bold;color: #3182ce;margin-top: 50px;background: #fff;border: 1px solid #3182ce;" (click)="openModal(changepasswordcontent)">
+                    <img src="./assets/icon/icon-user-password.svg" style="padding-right:5px;" />
+                    <span>Change Password</span>
+                </button>-->
+   
+              </div>
+               
+  
+            </div>
+   
+          </div>
+  
+    
+        </div>
+      </div>
+  
+    </div>
+  </div>  
+  
+  <ng-template #changesecuritycontent role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="display: none;">
+      <h4 class="modal-title text-white">Change Contact</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background: #ffffff !important;">
+      <div class="card-body p-4X">
+        <!-- Logo -->
+        <div class="text-center w-100 m-auto">
+          <button type="button" class="close text-whiteX" aria-label="Close" (click)="modal('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <img src="./assets/images/sh360-logo.svg" alt="" height="75">
+          <h5 *ngIf="!success">Update your secret questions</h5>
+          <p *ngIf="!success">Incase if you forget your password</p>
+        </div>
+      </div>   
+      <div class="text-left" *ngIf=" secmsg ">
+        <div *ngIf="successmsg" class="alert alert-success">
+          <span style="color:green;">{{successmsg}}</span>
+        </div>
+      </div>
+      
+      <div class="text-left" *ngIf=" secfrm ">
+   
+        <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+  
+        <form *ngIf=" !userData ">
+          <div style="min-height: 300px;">&nbsp;</div>
+        </form>  
+        
+        <form *ngIf=" userData " class="needs-validation" name="verifysecurityForm" [formGroup]="verifysecurityForm" (ngSubmit)="onSubmit()" novalidate>
+  
+          <!--<app-ui-preloader [display]="loading"></app-ui-preloader>-->
+
+          <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+          <ngb-alert type="success" *ngIf="success" [dismissible]="false">{{ success }}</ngb-alert>
+
+          <div class="form-group mb-3" *ngIf="!success">
+            <!--          
+            <select class="form-control" formControlName="question1" name="question1" id="question1" value="1" [(ngModel)]="answer1" style="color: #3182CE;margin-bottom: 10px;">
+              <option>What was your childhood nickname?</option>
+            </select>
+            --> 
+            <ng-select [items]="questions" [(ngModel)]="userquestion1"
+                      bindLabel="question" bindValue="_id" id="question1" name="question1" formControlName="question1"
+                      placeholder="Choose Question" [ngClass]="{ 'is-invalid': submitted && form.question1.errors }" >
+                      </ng-select>
+            
+            <input type="text" formControlName="answer1" class="form-control" [(ngModel)]="useranswer1"
+              [ngClass]="{ 'is-invalid': submitted && f.answer1.errors }" name="answer1" id="answer1" placeholder="Enter Your answer" style="height: 50px;" />
+
+            <div *ngIf="submitted && f.answer1.errors" class="invalid-feedback">
+              <div *ngIf="f.answer1.errors.required">Please answer this question</div>
+            </div>
+          </div>
+          <div class="form-group mb-3" *ngIf="!success">
+            
+              <!--
+              <select class="form-control" formControlName="question2" name="question2" id="question2" value="2" [(ngModel)]="answer2" style="color: #3182CE;margin-bottom: 10px;">
+                <option>What’s the name of the first school you attended?</option>
+              </select>
+              -->
+              <ng-select [items]="questions" [(ngModel)]="userquestion2"
+                bindLabel="question" bindValue="_id" id="question2" name="question2" formControlName="question2"
+                placeholder="Choose Question" [ngClass]="{ 'is-invalid': submitted && form.question2.errors }" >
+                </ng-select>
+              <input type="text" formControlName="answer2" class="form-control" [(ngModel)]="useranswer2"
+                [ngClass]="{ 'is-invalid': submitted && f.answer2.errors }" name="answer2" id="answer2" placeholder="Enter Your answer" style="height: 50px;" />
+
+              <div *ngIf="submitted && f.answer2.errors" class="invalid-feedback">
+                <div *ngIf="f.answer2.errors.required">Please answer this question</div>
+              </div>
+            </div>
+            <div class="form-group mb-3" *ngIf="!success">
+              <!--   
+              <select class="form-control" formControlName="question3" name="question3" id="question3" value="3" [(ngModel)]="answer3" style="color: #3182CE;margin-bottom: 10px;">
+                <option>What was your childhood nickname?</option>
+              </select>
+              -->
+              <ng-select [items]="questions" [(ngModel)]="userquestion3"
+                bindLabel="question" bindValue="_id" id="question3" name="question3" formControlName="question3"
+                placeholder="Choose Question" [ngClass]="{ 'is-invalid': submitted && form.question3.errors }" >
+                </ng-select>
+        
+              <input type="text" formControlName="answer3" class="form-control" [(ngModel)]="useranswer3"
+                [ngClass]="{ 'is-invalid': submitted && f.answer3.errors }" id="answer3" placeholder="Enter Your answer" style="height: 50px;" />
+
+              <div *ngIf="submitted && f.answer3.errors" class="invalid-feedback">
+                <div *ngIf="f.answer3.errors.required">Please answer this question</div>
+              </div>
+            </div>
+
+          <div class="form-group mb-0 text-center" *ngIf="!success">              
+            <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Update Changes</button>
+          </div>
+          <div class="form-group mb-0 text-center" *ngIf="!success">  
+            <br/>            
+          <button type="button" class="btn btn-danger btn-block" (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </ng-template>
+  
+  
+<ng-template #changepasswordcontent role="document" let-modal="close">
+    <div class="modal-header bg-dark" style="display: none;">
+      <h4 class="modal-title text-white">Change Password</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-3" style="background: #ffffff !important;">
+      <div class="card-body p-4X">
+        <!-- Logo -->
+        <div class="text-center w-100 m-auto">
+          <img src="./assets/images/sh360-logo.svg" alt="" height="75">
+          <h5>Change your password</h5>
+        </div>
+      </div>    
+      <div class="text-left" *ngIf=" pwdmsg ">
+        <div *ngIf="successmsg" class="alert alert-success">
+          <span style="color:green;">{{successmsg}}</span>
+        </div>
+        <div class="text-right">
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="modal('close click')">Close</button>
+        </div>
+      </div>
+      
+      <div class="text-left" *ngIf=" pwdfrm ">
+        <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+         
+          <form (ngSubmit)="savePassword()" [formGroup]="validationpasswordform">
+          <div class="form-group">
+            <label for="cpassword">Current Password</label>
+            <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Enter Current Password" formControlName="cpassword"
+              [ngClass]="{'is-invalid': submitted && form.cpassword.errors}" minlength="8">
+            <div *ngIf="submitted && form.cpassword.errors" class="invalid-feedback">
+              <span *ngIf="form.cpassword.errors.required">Please enter current password</span>
+            </div>
+          </div>
+     
+          <div class="form-group">
+            <label for="npassword">New Password</label>
+            <input type="password" class="form-control" id="npassword" name="npassword" placeholder="Enter New Password" formControlName="npassword"
+              [ngClass]="{'is-invalid': submitted && form.npassword.errors}" minlength="8">
+            <div *ngIf="submitted && form.npassword.errors" class="invalid-feedback">
+              <span *ngIf="form.npassword.errors.required">Please enter new password</span>            
+              <span *ngIf="form.npassword.errors?.pattern">Please enter a password with below requirements</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="cnpassword">Confirm Password </label>
+            <input type="password" class="form-control" id="cnpassword" name="cnpassword" placeholder="Re-enter New Password" formControlName="cnpassword"
+              [ngClass]="{'is-invalid': submitted && form.cnpassword.errors}" minlength="8">
+            <div *ngIf="submitted && form.cnpassword.errors" class="invalid-feedback">
+              <span *ngIf="form.cnpassword.errors.required">Please enter confirm password.</span>
+              <span *ngIf="form.cnpassword.errors.mustMatch">Confirm password should be same as new password.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label>Password must meet the following requirements:</label> <br/>
+            - At least 8 characters<br/>
+            - At least one uppercase<br/>
+            - At least one number<br/>
+          </div>
+  
+          <div class="text-right">
+            <button type="submit" class="btn btn-success">Confirm</button>
+            <button type="button" class="btn btn-danger ml-1"
+              (click)="modal('close click')">Cancel</button>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </ng-template>

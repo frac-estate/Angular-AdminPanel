@@ -1,0 +1,9 @@
+{
+    "production": true,
+    "baseUrl": "http://3.94.31.236:11008/entity",
+    "chatbaseUrl": "http://3.94.31.236:11008/entity",
+    "providerbaseUrl": "http://3.94.31.236:11001/api",
+    "websocketBaseUrl": "http://3.94.31.236:11008/entity",
+    "socketIOBaseUrl": "http://3.94.31.236:11008",
+    "webbaseUrl": "/"
+}

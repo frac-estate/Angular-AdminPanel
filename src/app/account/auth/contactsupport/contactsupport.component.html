@@ -1,0 +1,112 @@
+<div class="account-pages mt-4 mb-4">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-patternXYZ">
+            <div class="card-body p-4X">
+              <!-- Logo -->
+              <div class="text-center w-100 m-auto">
+                <a routerLink="/">
+                  <img src="./assets/images/sh360-logo.svg" alt="" height="75">
+                </a>
+                <p class="text-mutedX text-white-50X mb-4X mt-3X" style="color: #222222;font-weight: bold;">Support</p>
+                <p class="text-muted text-white-50X mb-4X mt-3X">For all enquiries, pleas email us using the form below</p>
+              </div>
+            </div>
+            <div class="card-body p-4X">
+              <form class="needs-validation" name="contactSupportForm" [formGroup]="contactSupportForm" (ngSubmit)="onSubmit()" novalidate>
+  
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+                <ngb-alert type="success" *ngIf="success" [dismissible]="false">{{ success }}</ngb-alert>
+  
+                <div class="form-group mb-3">
+                  <label for="email">Registered email ID</label>
+  
+                  <input type="email" formControlName="email" class="form-control" autofocus
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" placeholder="Enter Registered Email Address" />
+  
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Please enter valid email id </div>
+                  </div>
+                </div>
+  
+                <div class="form-group mb-3">
+                  <label for="about">What’s this about?</label>
+                  <select formControlName="about" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.about.errors }" name="about" id="about" placeholder="What’s this about?">
+                    <option>General enquiry</option>
+                    <option>Account related</option>
+                  </select>
+                  <!--<input type="text" formControlName="about" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.about.errors }" name="about" id="about" placeholder="What’s this about?" />-->
+                    
+                  <div *ngIf="submitted && f.about.errors" class="invalid-feedback">
+                    <div *ngIf="f.about.errors.required">About is required</div>
+                  </div>
+                </div> 
+                
+                <div class="form-group mb-3">
+                    <label for="message">Your message/Query</label>
+    
+                    <textarea formControlName="message" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.message.errors }" name="message" id="message" placeholder="Your message/Query"></textarea>
+                       
+                    <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                      <div *ngIf="f.message.errors.required">Message is required</div>
+                    </div>
+                  </div> 
+  
+                <div class="form-group mb-0 text-center" *ngIf="!loading">
+                  <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Submit</button>
+                </div>
+  
+                <div class="form-group mb-0 text-center" *ngIf="loading">
+                  <button class="btn btn-primary btn-block" type="button" disabled="disabled">Please wait...</button>
+                </div>
+  
+              </form>
+  
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <p>
+                    <a routerLink="/account/login" class="text-blue ml-1"> < Back to login </a>
+                  </p>
+                </div> <!-- end col -->
+              </div>
+    
+   
+            </div> <!-- end card-body -->
+          </div>
+          <!-- end card -->
+  
+          
+  
+        </div> <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end page -->
+  
+<footer class="footer footer-alt" style="color: #718096;background: rgba(255, 255, 255, 0.55);">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-6">
+      <div style="float: left;">
+        <img src="./assets/images/sh360-footer-logo.svg" alt="" style=" height: 12px;padding-right: 20px;margin-top: -5px;" />
+      </div>
+      <div style="float: left;">
+        2021 &copy; Design and Developed by <a href="https://www.hlth360.net/" target="_blank" class="text-white-50X" style="color: #336dbf !important;"><b>HEALTH360 Inc</b></a> 
+      </div>  
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-6">
+      <div style="float: right;">
+        Call Support: <a href="tel:703-665-0820" class="text-white ml-1" style="color: #336dbf !important;"><b>703-665-0820</b></a>
+      </div>
+      <div style="float: right;">
+        <a routerLink="/account/terms" target="_blank" href="javascript:void(0);" class="text-white-50X" style="color: #336dbf !important;"><b>Terms of Use</b></a> &nbsp;&nbsp;|&nbsp;&nbsp;
+      </div>  
+    </div>
+      
+  </div> 
+</footer>

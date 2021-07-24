@@ -1,0 +1,9 @@
+{
+    "production": true,
+    "baseUrl": "https://demo.membervw.hlth360.net:11008/cm",
+    "chatbaseUrl": "https://demo.membervw.hlth360.net:11008/cm",
+    "providerbaseUrl": "https://demo.membervw.hlth360.net:11001/api",
+    "websocketBaseUrl": "https://demo.membervw.hlth360.net:11008/cm",
+    "socketIOBaseUrl": "https://demo.membervw.hlth360.net:11008",
+    "webbaseUrl": "/"
+}

@@ -1,0 +1,1007 @@
+<div class="container-fluid" style="height: 100%;">
+    <div class="row">
+  
+      <div class="col-xl-3" style="padding: 0px;margin: 0px;">
+        <div class="card center-screen-side">
+        
+        <div class="card-box" style="padding: 0px;margin: 0px;">
+  
+          <div class="top-card-side-body">
+  
+            <div class="app-search">
+              <div class="box">
+                <div class="container-1">
+                    <span class="icon">
+                      <!--<i class="fas fa-search"></i>-->
+                      <img src="./assets/icon/icon-search.svg" />
+                    </span>
+                    <input id="search" class="search" [(ngModel)]="searchText" placeholder="Search patient name" />
+  
+                    <!--<input type="search" id="search" placeholder="Search patient name" />-->
+  
+  <!--            
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a hero by id or name or country">
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Hero Name</th>
+      <th>Country</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let inbox of inboxData | filter:searchText">
+      <td>{{inbox.sh360Id}}</td>
+      <td>{{ inbox.firstName }} </td>
+      <td>{{ inbox.lastName }}</td>
+    </tr>
+    </tbody>
+  </table> -->                 
+                </div>
+              </div>
+            </div>
+  
+          </div>
+  
+          <div class="top-card-side-body">
+            <div class="box">
+              <div class="container-1">
+                
+              </div>
+            </div>
+          </div>
+   
+          <div class="top-card-side-body">
+  
+          </div>
+  
+          <div class="middel-card-side-body">
+                    
+            <h4 class="header-title box-title-text">Showing patient list</h4>
+            
+            
+            <div class="inbox-widget" appSlimScroll style="min-height: 310px;"> 
+              <!--<ul>
+                <li *ngFor="let inbox of projectData | filter : searchText">
+                  {{ inbox.id }} {{ inbox.name }}
+                </li>
+              </ul>-->
+              
+              <div id="userlist" class="inbox-item" *ngFor="let inbox of inboxData | filter : searchText">
+                <a href="javascript:void(0);" (click)="showResourceDataByType('medications',inbox.sh360Id)" [class.selected]="CurrentUserSelected == inbox.sh360Id">
+                  <p class="inbox-item-author">{{ inbox.firstName | titlecase }} {{ inbox.lastName | titlecase }}</p>
+                </a>
+               </div>
+              <!--<div id="userlist" class="inbox-item" *ngFor="let inbox of projectData | filter : searchText">
+                <a href="javascript:void(0);">
+                  <p class="inbox-item-author">{{ inbox.name | titlecase }}</p>
+                </a>
+               </div>-->
+  
+               <!--
+               <div id="userlist" class="inbox-item" *ngFor="let inbox of inboxData | filter : searchText">
+                <a href="javascript:void(0);" (click)="showResourceDataByType('medications',inbox.sh360Id)" [class.selected]="CurrentUserSelected == inbox.sh360Id">
+                  <div class="inbox-item-img"><img src="assets/images/users/sh360-noprofile.png" class="rounded-circle" alt=""></div>
+                  <p class="inbox-item-author">{{ inbox.firstName | titlecase }} {{ inbox.lastName | titlecase }}</p>
+                  <p>{{inbox.sh360Id}}</p>
+                </a>
+               </div>
+               -->
+              <!--<ul>
+                <li *ngFor="let inbox of inboxData | filter : searchText">
+                  {{inbox.sh360Id}}
+                  <a href="javascript:void(0);" (click)="showResourceDataByType('medications',inbox.sh360Id)">
+                    <div class="inbox-item-img"><img src="assets/images/users/sh360-noprofile.png" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author">{{ inbox.firstName }} {{ inbox.lastName }}</p> 
+                    <p>{{inbox.sh360Id}}</p>
+                  </a>
+                </li>
+              </ul>-->
+             
+              <!--
+              <div class="inbox-item" *ngFor="let inbox of inboxData">
+                <a href="javascript:void(0);" (click)="showResourceDataByType('medications',inbox.sh360Id)">
+                  <div class="inbox-item-img"><img src="assets/images/users/sh360-noprofile.png" class="rounded-circle" alt=""></div>
+                  <p class="inbox-item-author">{{ inbox.firstName }} {{ inbox.lastName }}</p> 
+                  <p>{{inbox.sh360Id}}</p>
+                </a>
+              </div>
+              -->
+              <!--
+                <div class="inbox-item" *ngFor="let inbox of inboxData">
+                  <a href="javascript:void(0);" (click)="showResourceDataByType('medications',inbox.id)">
+                    <div class="inbox-item-img"><img src="{{inbox.image}}" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author">{{ inbox.name }}</p> 
+                  </a>
+                </div>
+              -->
+                
+            </div>
+  
+    
+  
+          </div>
+          
+          <div class="bottom-card-side-body">
+  
+            <!--<span>This messaging/chat is protected</span>-->
+  
+          </div>
+        </div>
+      </div>
+  
+   
+      </div>
+   
+  
+      <div class="col-xl-9">
+
+  <div class="content-wrapper">
+
+    
+    <ul id="nav-tabs" class="nav nav-tabs">
+        <!--
+        <li [class.selected]="CurrentTabPage == 'message'">
+          <a data-toggle="tab" (click)="showChatBox(patientId)" href="javascript:void(0);">
+          <img src="./assets/icon/icon-message_on.svg" class="active" />
+          <img src="./assets/icon/icon-message_off.svg" class="inactive" />
+          My Messages
+        </a>              
+        </li>
+        -->
+        <li [class.selected]="CurrentTabPage == 'medications'">
+          <a data-toggle="tab" (click)="showResourceDataByType('medications',patientId)" href="javascript:void(0);">
+          <img src="./assets/icon/icon-reminder_on.svg" class="active" />
+          <img src="./assets/icon/icon-reminder_off.svg" class="inactive" />
+          Medication
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'encounters'">
+          <a data-toggle="tab"  (click)="showResourceDataByType('encounters',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-visit_on.svg" class="active" />
+          <img src="./assets/icon/icon-visit_off.svg" class="inactive" />
+          Visits
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'allergies'">
+          <a data-toggle="tab" (click)="showResourceDataByType('allergies',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-allergy_on.svg" class="active" />
+          <img src="./assets/icon/icon-allergy_off.svg" class="inactive" />
+          Allergies 
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'immunizations'">
+          <a data-toggle="tab" (click)="showResourceDataByType('immunizations',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-vaccine_on.svg" class="active" />
+          <img src="./assets/icon/icon-vaccine_off.svg" class="inactive" />
+          Immunizations
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'procedures'">
+          <a data-toggle="tab" (click)="showResourceDataByType('procedures',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-procedure_on.svg" class="active" />
+          <img src="./assets/icon/icon-procedure_off.svg" class="inactive" />
+          Procedures
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'observations'">
+          <a data-toggle="tab" (click)="showResourceDataByType('observations',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-vital_on.svg" class="active" />
+          <img src="./assets/icon/icon-vital_off.svg" class="inactive" />
+          Vitals
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'labreports'">
+          <a data-toggle="tab" (click)="showResourceDataByType('labreports',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-lab_on.svg" class="active" />
+          <img src="./assets/icon/icon-lab_off.svg" class="inactive" />
+          Lab Report
+          </a>
+        </li>
+        <li [class.selected]="CurrentTabPage == 'medicationadherence'">
+          <a data-toggle="tab" (click)="showMedicalAdherence('medicationadherence',patientId)" href="javascript:void(0);"> 
+          <img src="./assets/icon/icon-lab_on.svg" class="active" />
+          <img src="./assets/icon/icon-lab_off.svg" class="inactive" />
+           Medication Adherence
+          </a>
+        </li>
+        
+      </ul>
+      
+    <section class="content" style="padding-top: 0px; /* max-width:1366px !important; */ height: 1400px; ">
+    
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-left-0 ma-top-30" style="height: 100%;">
+
+      <div class="datatableMenu" style="height: 50px;">
+        <div id="breadcum" style="width: 75%;float: left;">
+        
+        <!--
+        <span><a href="javascript:void(0);" (click)="showPage('home')" class="mouse-pointer">
+        <img src="./assets/icon/home-breadcum-icon.svg" />
+        </a></span>
+        <span>&nbsp;&nbsp; / &nbsp;&nbsp;</span>
+        -->  
+        <span style="text-transform: capitalize;font-weight: bold;"> Medication Adherence </span>  
+        </div>
+        <div id="filterarea" style="width: 25%;float: left;">
+            
+            <div class="row form-group" style="margin:0px;">
+                <div class="col-sm" style="width:90px;float: left;">
+                    <label for="Taken">Taken</label>
+                    <span style="position: absolute; width: 18px; height: 18px; background: #9FDCC7;  border: 1px solid #9FDCC7;box-sizing: border-box;margin-left: 10px;"></span>
+                </div>
+                <div class="col-sm" style="width:100px;float: left;">
+                  <label for="Skipped">Skipped</label>
+                  <span style="position: absolute; width: 18px; height: 18px; background: #E8AA74;  border: 1px solid #E8AA74;box-sizing: border-box;margin-left: 10px;"></span>
+                </div>
+              <!--
+                <div class="col-sm" style="width:115px;float: left;">
+                  <label for="Upcoming">Upcoming</label>
+                  <span style="position: absolute; width: 18px; height: 18px; background: #BFCCED;  border: 1px solid #BFCCED;box-sizing: border-box;margin-left: 10px;"></span>
+                </div>
+                <div class="col-sm" style="width:100px;float: left;">
+                  <label for="Not-Tracked">Not-Tracked</label>
+                  <span style="position: absolute; width: 18px; height: 18px; background: #E8E8E8;  border: 1px solid #E8E8E8;box-sizing: border-box;margin-left: 10px;"></span>
+                </div>
+              -->
+            </div>
+        
+        </div>
+      </div>
+
+
+      <div class="" style="height: 100%; background: #fff;">
+        
+        <div class="med-report-side-box" style="height: 100%; width: 380px;float:left;border: 1px solid rgba(232, 232, 232, 1.0);min-width: 380px;">
+        
+        <div class="medicationcalendar" style="height: 410px;">
+
+
+          <div id="calnavview" style="height: 50px;">
+
+            <div style="width: 50%;float: left;">  
+              <button *ngIf="monthView" style="margin: 15px 0px 0px 15px;color: #cacaca;background: #FBFBFB;font-weight: bold;" class="btn btn-sm btn-outline-primary mr-2" (click)="selectMonth()">Month</button>
+              <button *ngIf="!monthView" style="margin: 15px 0px 0px 15px;color:#0072BC;font-weight: bold;" class="btn btn-sm btn-outline-primary mr-2" (click)="selectMonth()">Month</button>
+              <button *ngIf="yearView" style="margin: 15px 15px 0px 0px;color: #cacaca;background: #FBFBFB;font-weight: bold;" class="btn btn-sm btn-outline-primary mr-2" (click)="selectYear()">Year</button>
+              <button *ngIf="!yearView" style="margin: 15px 15px 0px 0px;color:#0072BC;font-weight: bold;" class="btn btn-sm btn-outline-primary mr-2" (click)="selectYear()">Year</button>
+            </div>
+    
+            <div style="width: 50%;float: left;" *ngIf=" !yearView && systemYear === systemCurrentYear ">
+              <button *ngIf=" systemMonth === systemCurrentMonth " class="btn btn-sm btn-outline-primary mr-2" style="margin: 15px 15px 0px 0px;color: #cacaca;background: #FBFBFB;font-weight: bold;padding: 5px 8px;"  mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="selectCurrentMonth('plus')">Jump to current month</button>
+              <button *ngIf=" systemMonth !== systemCurrentMonth " class="btn btn-sm btn-outline-primary mr-2" style="margin: 15px 15px 0px 0px;color:#0072BC;font-weight: bold;padding: 5px 8px;"  mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="selectCurrentMonth('plus')">Jump to current month</button>
+            </div>
+            <div style="width: 50%;float: left;" *ngIf=" yearView || systemYear !== systemCurrentYear ">
+              <button class="btn btn-sm btn-outline-primary mr-2" style="margin: 15px 15px 0px 0px;color:#0072BC;font-weight: bold;padding: 5px 8px;"  mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="selectCurrentMonth('plus')">Jump to current month</button>
+            </div>    
+
+        </div>
+         
+        <div id="monthlyview" *ngIf="monthView">
+ 
+          <div class="row text-center">
+            <div class="col-md-3">
+                <div class="btn-group">
+                  <div class="btn btn-primary calbtn" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay('minus')" > <i class="fa fa-chevron-left" aria-hidden="true"></i> </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <h3 style="font-size:18px; margin:8px 0px;">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+            </div>
+
+            <div class="col-md-3" *ngIf=" systemYear === systemCurrentYear ">
+              <div class="btn-group" *ngIf=" systemMonth !== systemCurrentMonth ">
+                <div class="btn btn-primary calbtn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay('plus')" > <i class="fa fa-chevron-right" aria-hidden="true"></i> </div>
+              </div>
+              <div class="btn-group" *ngIf=" systemMonth === systemCurrentMonth ">
+                <div class="btn btn-primary calbtn" > <i class="fa fa-chevron-right" aria-hidden="true" style="color: #ccc;"></i> </div>
+              </div>
+            </div>
+            <div class="col-md-3" *ngIf=" systemYear !== systemCurrentYear ">
+              <div class="btn-group">
+                <div class="btn btn-primary calbtn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay('plus')" > <i class="fa fa-chevron-right" aria-hidden="true"></i> </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div [ngSwitch]="view">
+          
+            <mwl-calendar-month-view
+              *ngSwitchCase="CalendarView.Month"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              [activeDayIsOpen]="activeDayIsOpen"
+              (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)"
+            >
+            </mwl-calendar-month-view>
+          
+          </div>
+        
+        </div>  
+
+        <div id="yearlyview" *ngIf="yearView">
+          <style>
+            #yearcalview { display:noneX !important; }
+          </style>
+          <div id="yearcalview" class="row text-center">
+            <div class="col-md-3">
+                <div class="btn-group">
+                  <div class="btn btn-primary calbtn" (click)="closeOpenYearViewDay('minus')"> <i class="fa fa-chevron-left" aria-hidden="true"></i> </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <h3 style="font-size:18px; margin:8px 0px;">{{systemYear}} </h3>
+            </div>
+            <div class="col-md-3" *ngIf=" systemYear === systemCurrentYear ">
+              <div class="btn-group">
+                <div class="btn btn-primary calbtn"  > <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i> </div>
+              </div>
+            </div>
+            <div class="col-md-3" *ngIf=" systemYear !== systemCurrentYear ">
+              <div class="btn-group">
+                <div class="btn btn-primary calbtn"  (click)="closeOpenYearViewDay('plus')"> <i class="fa fa-chevron-right" aria-hidden="true"></i> </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="yearcalview"> 
+             <ul class="calcyearview" *ngIf=" systemYear === systemCurrentYear ">
+              <li *ngFor="let ydata of yearmonthsArray; let y-index;" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="selectYearMonth(systemYear,ydata.digit)" style="cursor: pointer;"> 
+                <span class="monthbox" *ngIf=" systemCurrentMonth >= ydata.digit ">
+                  {{ydata.name}}
+                </span> 
+
+                <span class="monthbox" *ngIf=" systemCurrentMonth < ydata.digit " style="opacity: 0.5;">
+                  {{ydata.name}}
+                </span> 
+
+                <span class="greenbox" *ngIf=" systemCurrentMonth >= ydata.digit ">
+                  {{medicationYearlyDataArray[ydata.digit].data.takenPercent}}%
+                </span>
+                
+                <span class="redbox" *ngIf=" systemCurrentMonth >= ydata.digit ">
+                  {{medicationYearlyDataArray[ydata.digit].data.skippedPercent}}%
+                </span>
+              </li>
+            </ul>
+            <ul class="calcyearview" *ngIf=" systemYear !== systemCurrentYear ">
+              <li *ngFor="let ydata of yearmonthsArray; let y-index;" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="selectYearMonth(systemYear,ydata.digit)" style="cursor: pointer;"> 
+                <span class="monthbox" >
+                  {{ydata.name}}
+                </span>  
+
+                <span class="greenbox" >
+                  {{medicationYearlyDataArray[ydata.digit].data.takenPercent}}%
+                </span>
+                
+                <span class="redbox" >
+                  {{medicationYearlyDataArray[ydata.digit].data.skippedPercent}}%
+                </span>
+              </li>
+            </ul>
+
+          </div>
+        </div>  
+        
+ 
+        </div>  
+
+        <div class="medicationlist" style="height: 265px;border-top: 1px solid #cacaca;">
+           
+          <span style="font-weight: bold;padding: 5px 0px 5px 10px;text-transform: uppercase;position: absolute;"> Current medication in course </span>  
+          <br/>
+          <ul class="nav navbar-nav" style="width: 100%;padding-top: 10px;">
+          <li class="dropdownX messages-menuX openX" style="width: 100%;"> 
+                <ul class="dropdown-menuX" style="width: 100%;border: none;padding: 0px 0px 0px 5px;margin: 0px;">
+                      <li *ngIf=" medicationlistDataCount == 0 || medicationlistDataCount == null" style="min-height: 200px;">
+                          <p style="padding: 25px;">No Medication Reports</p>
+                      </li>
+                      <li *ngIf=" medicationlistDataCount > 0 " style="background: none;min-height: 283px;height: 283px;overflow-x: none;overflow-y: scroll;">
+                        
+                          <ul class="menuX" style="padding: 0px;margin: 0px;">
+
+                              <li *ngFor="let data of medicationlistData;let i=index;" style="cursor: default;border-bottom: 1px solid #ccc;padding: 8px 0px;"><!-- start message -->
+                                
+                                <!--
+                                <a href="javascript:void(0);" [class.active]="selectedItem == i" (click)="showReportPage('medicationreport', data.resourceId, selectedItem=i)" class="border-gray" >
+                                </a>
+                                -->
+                                <div class="border-gray" >
+                                  <div class="pull-left"><img src="./assets/icon/icon_pills.svg" class="img-thumbnail" alt="User Image" /></div>
+                                  <!--<p><span class="active-class" *ngIf="data.isActive === true"></span></p>-->
+                                  <h4 class="med-name">{{data.medicine.description}}</h4>
+                                  <p class="med-dosage" *ngIf=" data.medicine.dosageQty>0 ">{{data.medicine.dosageQty}} {{data.medicine.dosageUnit}}</p>
+                                  
+                                  <!--<ion-progress-bar value="{{data.percentage/100}}" class="" color="">{{data.percentage}}</ion-progress-bar>-->
+                                  <p class="med-duration" style="margin: 0px;top: 0px;">
+                                    <span class="" > &nbsp;
+                                    {{data.percentage}} % on course and {{data.remainingDays}} days remaining
+                                    </span>
+                                   
+                                    
+                                    <span class="tooltipcustom" style="float: right ;">
+                                      <img src="./assets/icon/tooltip-medicationreport.svg"  />
+                                      
+                                      <span class="tooltipcustomtext"> 
+                                        
+                                        <div *ngFor="let periodsdata of data.periods;let p=index;">
+                                          &nbsp;  &nbsp; {{periodsdata.date}}&nbsp; &nbsp;  &nbsp; &nbsp; 
+                                          <span *ngIf=" periodsdata.days <= 365 " > ( {{periodsdata.days}} Days )&nbsp; &nbsp;  </span> 
+                                          <span *ngIf=" periodsdata.days > 365 " > ( Lifetime )&nbsp; &nbsp;  </span> 
+                                         </div>
+                                         
+                                       </span>
+                                    </span> 
+                                    <!--
+                                    <span *ngIf=" data.totalDays <= 365 " style="float: right;padding: 24px 15px 0px 0px;margin: 0px -40px;" >{{data.totalDays}} Days</span>
+                                    <span *ngIf=" data.totalDays > 365 " style="float: right;padding: 24px 15px 0px 0px;margin: 0px -40px;" > Lifetime </span>
+                                    -->
+                                    <span *ngIf=" data.totalDays <= 365 "  >{{data.totalDays}} Days</span>
+                                    <span *ngIf=" data.totalDays > 365 "  > Lifetime </span>
+
+
+                                  </p>
+                                  
+                                
+                                </div>
+                                
+                                 
+                              </li> 
+                          </ul>
+                      </li>
+                </ul>
+         </li>
+         </ul>	
+         
+        </div>
+
+        </div>
+        
+        <div class="med-report-main-box" style="height: 100%; width: 100%;border: 1px solid rgba(232, 232, 232, 1.0);padding: 0px;width: auto !important;margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 380px !important;display: block;">
+          
+          <div class="" *ngIf="ChartresourceId ==''" style="padding: 0px;">
+              
+            <div class="welcome-card" style="min-height: 580px;-webkit-box-shadow: none; box-shadow: none; "> 
+                  <div style="padding: 150px 0px !important;">
+                    <div style="position: static;width: 400px;height: 200px;background: #FBFBFB;border-radius: 17px;text-align: center;padding: 30px;margin: auto;">
+                      <p><img src="./assets/icon/noimg-medicationreport.svg" /></p>
+                      <b> 
+                        <!--No adherence report available-->
+                        Please click on a day on the calendar to see the Medical Adherence Report
+                      </b>
+                    </div>
+                </div>
+            </div>
+
+          </div> 
+
+          <div class="" *ngIf="ChartresourceId !=''" style="padding: 0px;">
+
+            <div class="" *ngIf="medicationDetailDataArray.length == 0 " style="padding: 0px;">
+              
+              <div class="welcome-card" style="min-height: 580px;-webkit-box-shadow: none; box-shadow: none; "> 
+                <div style="padding: 150px 0px !important;">
+                  <div style="position: static;width: 400px;height: 200px;background: #FBFBFB;border-radius: 17px;text-align: center;padding: 30px;margin: auto;">
+                    <p><img src="./assets/icon/noimg-medicationreport.svg" /></p>
+                    <b> 
+                      No adherence report available
+                      <!--Please click on a day on the calendar to see the Medical Adherence Report-->
+                    </b>
+                  </div>
+                </div>
+            </div>
+  
+            </div> 
+  
+            <div class="" *ngIf="medicationDetailDataArray.length > 0 " style="padding: 10px 0px 0px 20px;">
+              
+            
+            <div class="welcome-card" style="min-height:630px;-webkit-box-shadow: none;box-shadow: none;overflow-x: hidden !important;overflow-y: scroll !important;">
+           
+          
+            
+            <div style="width: 100%; float: left; min-height:30px;">
+              <p class="comment-box-title">Showing Adherence Report for {{ resourceDateValue | date }}</p>
+            </div>
+            <!--{{medicationDetailDataArray | json}}-->
+              <ul class="nav nav-tabs" style="margin-top:40px">
+                <li *ngFor="let medicationDetailData of medicationDetailDataArray;let i=index;" [ngClass]="i === MedTabID ? 'active' : ''">
+                    <!--   <a data-toggle="tab" href="#{{medicationDetailData.resourceId}}" (click)="MedTab(medicationDetailData.resourceId)"  >{{medicationDetailData.medicine.description}}</a> -->
+                  <a data-toggle="tab" (click)="MedTab(i)"  >{{medicationDetailData.medicine.description}}</a>
+                </li>
+                
+              </ul>
+            
+              <div class="tab-content">
+                <div *ngFor="let medicationDetailData of medicationDetailDataArray;let i=index;" id="{{medicationDetailData.resourceId}}"  [ngClass]="i === MedTabID ? 'tab-pane in active' : 'tab-pane fade '" >
+                  
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-left-0 ma-top-10" >
+               
+                    <section id="cd-timeline" class="cd-container">
+     
+        
+                      <div class="med-summary" style="width: 100%; min-width: 400px; float: left; min-height:60px;display: none;">
+                        <span class="border-gray" style="cursor: default;">
+                        
+                          <h4>{{medicationDetailData.medicine.description}}&nbsp;
+                          <span class="med-active-class-box" *ngIf="medicationDetailData.status =='active'"> 
+                            <span class="med-active-class-text">Active Medication</span>
+                            <span class="med-active-class"></span>
+                          </span>
+                          </h4>
+                          <span></span>
+                          
+                        </span>
+                      </div>
+                     
+                    <div style="width: 100%; float: left;min-height: 80px;padding-top:20px;">
+    
+                      <div style="width: 250px;float: left;" *ngIf="medicationDetailData.medicine.dosageQty != null; else notShowUnit">
+                        <p class="comment-box-title">Strength/Concentration/Units:</p>
+                        <hr class="comment-box-line" />
+                        <p style="font-weight: bold;color: #000000;" *ngIf=" medicationDetailData.medicine.dosageQty > 0 ">{{medicationDetailData.medicine.dosageQty}}&nbsp; {{medicationDetailData.medicine.dosageUnit}}</p>
+                      </div>                  
+                      <ng-template #notShowUnit>
+                        <div style="width: 250px;float: left;">
+                          <p class="comment-box-title">Strength/Concentration/Units:</p>
+                          <hr class="comment-box-line" />
+                          <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                        </div>
+                      </ng-template>
+    
+                      <!--
+                      <div style="width: 320px;float: left;" *ngIf="medicationDetailData.medicine.startDate != null; else notShowPeroid">
+                        <p class="comment-box-title">Course Peroid:</p>
+                        <hr class="comment-box-line" />
+                        <p style="font-weight: bold;color: #000000;"> &nbsp;<span class="new-textXYZ" *ngIf=" medicationDetailData.duration.startDate != null "> {{medicationDetailData.duration.startDate }} - {{medicationDetailData.duration.endDate }}</span> <br/> </p>
+                      </div>                  
+                      <ng-template #notShowPeroid>
+                        <div style="width: 320px;float: left;">
+                          <p class="comment-box-title">Course Peroid:</p>
+                          <hr class="comment-box-line" />
+                          <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                        </div>
+                      </ng-template>
+                      -->
+
+                      <!--
+                      <div style="width: 320px;float: left;" *ngIf="medicationDetailData.medicine.instruction != null; else notShowInstruction">
+                        <p class="comment-box-title">Dosage Instruction:</p>
+                        <hr class="comment-box-line" />
+                        <p style="font-weight: bold;color: #000000;"> {{medicationDetailData.medicine.instruction}} </p>
+                      </div>
+                      <ng-template #notShowInstruction>
+                        <div style="width: 320px;float: left;">
+                          <p class="comment-box-title">Dosage Instruction:</p>
+                          <hr class="comment-box-line" />
+                          <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                        </div>
+                      </ng-template>
+                      -->
+                    </div>  
+    
+                      <!--
+                      <div style="width: 100%;min-width: 400px; float: left; min-height: 120px;">
+                        <p class="comment-box-title">Medication Summary</p>
+                        <hr class="comment-box-line" />
+                        <div *ngIf="medicationDetailDataSummaryStatus.takenPercent != null; else notShowTAKENRange">
+                          <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                            <span class="text-span-taken" data-content="">{{medicationDetailDataSummaryStatus.takenPercent}} %</span>
+                            TAKEN
+                          </div>
+                        </div>
+                        <ng-template #notShowTAKENRange>
+                          <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                            <span class="text-span-taken" data-content="">0 %</span>
+                            TAKEN
+                          </div>
+                        </ng-template>
+    
+                        <div *ngIf="medicationDetailDataSummaryStatus.takenPercent != null; else notShowSKIPPEDRange">
+                          <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                            <span class="text-span-skipped" data-content="">{{medicationDetailDataSummaryStatus.skippedPercent}} %</span>
+                            SKIPPED
+                          </div> 
+                        </div>  
+                        
+                        <ng-template #notShowSKIPPEDRange>
+                          <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                            <span class="text-span-skipped" data-content="">0 %</span>
+                            SKIPPED
+                          </div>
+                        </ng-template>
+    
+                        
+                        <br/><br/>
+                      </div> 
+                    -->
+      
+                        
+                 
+                      <div style="width: 400px;float: left;" *ngIf=" medicationDetailData.times.length > 0; else notShowTiming">
+                        <!--
+                        <p class="comment-box-title">Frequency Information:</p>
+                        <hr class="comment-box-line" />
+                        -->  
+                        <div id="cd-timeline-wall" > 
+                        <div class="cd-timeline-block" *ngFor="let tdata of medicationDetailData.times;let i=index;">
+                          <div class="cd-timeline-icon text-center {{tdata.color}}"> 
+                          </div>
+                          <div class="cd-timeline-content padding ">
+                            <h5 class="marginBottom0 marginTop0" style=" color: #9E9E9F; font-weight: bold;" *ngIf=" tdata.responseTime != '' " >
+                            <span *ngIf=" tdata.color === 'RED' " style="color:#ff0000ab;">
+                             Medication skipped at {{tdata.responseTime}}
+                            </span>
+                            <span *ngIf=" tdata.color === 'GREEN' " style="color:#008000ad;">
+                              Medication taken at {{tdata.responseTime}}
+                             </span>
+                            </h5>
+                            <h5 class="marginBottom0 marginTop0" style=" color: #9E9E9F; font-weight: bold;" *ngIf=" tdata.responseTime == '' " >
+                              No responses were logged for the reminder set at {{tdata.reminderTime}}
+                            </h5>
+                            
+                            
+                            <p class="timelineText" *ngIf=" medicationDetailData.medicine.instruction != '' ">  {{medicationDetailData.medicine.instruction}} </p>
+                            <p class="timelineText" *ngIf=" medicationDetailData.medicine.instruction == '' ">   </p>
+                            
+
+                            <p class="timelineText" *ngIf=" tdata.color === 'RED' " style="width: fit-content;background: #efefef;padding: 5px;">  {{tdata.notes}}  </p>
+                        
+                          </div>
+                        </div>
+                      
+                        </div>
+                      </div>
+                 
+                      <ng-template #notShowTiming>
+                        <div style="width: 400px;float: left;">
+                          <p class="comment-box-title">Frequency Information:</p>
+                          <hr class="comment-box-line" />
+                          <p><i>No Data Found</i></p>
+                        </div>
+                      </ng-template>
+                    </section>
+                  
+                  </div>
+              
+                </div> 
+              </div>
+           
+
+           
+            <!--  
+              <div style="padding: 10px;width:100%;" *ngFor="let medicationDetailData of medicationDetailDataArrayX;let i=index;" >
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-left-0 ma-top-10" >
+               
+                <section id="cd-timeline" class="cd-container">
+ 
+    
+                  <div class="med-summary" style="width: 100%; min-width: 400px; float: left; min-height:60px;">
+                    <span class="border-gray" style="cursor: default;">
+                    
+                      <h4>{{medicationDetailData.medicine.description}}&nbsp;
+                      <span class="med-active-class-box" *ngIf="medicationDetailData.status =='active'"> 
+                        <span class="med-active-class-text">Active Medication</span>
+                        <span class="med-active-class"></span>
+                      </span>
+                      </h4>
+                      <span></span>
+                      
+                    </span>
+                  </div>
+                 
+                <div style="width: 100%; float: left;min-height: 80px;">
+
+                  <div style="width: 250px;float: left;" *ngIf="medicationDetailData.medicine.dosageQty != null; else notShowUnit">
+                    <p class="comment-box-title">Strength/Concentration/Units:</p>
+                    <hr class="comment-box-line" />
+                    <p style="font-weight: bold;color: #000000;">{{medicationDetailData.medicine.dosageQty}}&nbsp; {{medicationDetailData.medicine.dosageUnit}}</p>
+                  </div>                  
+                  <ng-template #notShowUnit>
+                    <div style="width: 250px;float: left;">
+                      <p class="comment-box-title">Strength/Concentration/Units:</p>
+                      <hr class="comment-box-line" />
+                      <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                    </div>
+                  </ng-template>
+
+                  <div style="width: 320px;float: left;" *ngIf="medicationDetailData.medicine.startDate != null; else notShowPeroid">
+                    <p class="comment-box-title">Course Peroid:</p>
+                    <hr class="comment-box-line" />
+                    <p style="font-weight: bold;color: #000000;"> &nbsp;<span class="new-textXYZ" *ngIf=" medicationDetailData.duration.startDate != null "> {{medicationDetailData.duration.startDate }} - {{medicationDetailData.duration.endDate }}</span> <br/> </p>
+                  </div>                  
+                  <ng-template #notShowPeroid>
+                    <div style="width: 320px;float: left;">
+                      <p class="comment-box-title">Course Peroid:</p>
+                      <hr class="comment-box-line" />
+                      <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                    </div>
+                  </ng-template>
+
+                  <div style="width: 320px;float: left;" *ngIf="medicationDetailData.medicine.instruction != null; else notShowInstruction">
+                    <p class="comment-box-title">Dosage Instruction:</p>
+                    <hr class="comment-box-line" />
+                    <p style="font-weight: bold;color: #000000;"> {{medicationDetailData.medicine.instruction}} </p>
+                  </div>
+                  <ng-template #notShowInstruction>
+                    <div style="width: 320px;float: left;">
+                      <p class="comment-box-title">Dosage Instruction:</p>
+                      <hr class="comment-box-line" />
+                      <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                    </div>
+                  </ng-template>
+ 
+                </div>  
+
+
+                  <div style="width: 100%;min-width: 400px; float: left; min-height: 120px;">
+                    <p class="comment-box-title">Medication Summary</p>
+                    <hr class="comment-box-line" />
+                    <div *ngIf="medicationDetailDataSummaryStatus.takenPercent != null; else notShowTAKENRange">
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-taken" data-content="">{{medicationDetailDataSummaryStatus.takenPercent}} %</span>
+                        TAKEN
+                      </div>
+                    </div>
+                    <ng-template #notShowTAKENRange>
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-taken" data-content="">0 %</span>
+                        TAKEN
+                      </div>
+                    </ng-template>
+
+                    <div *ngIf="medicationDetailDataSummaryStatus.takenPercent != null; else notShowSKIPPEDRange">
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-skipped" data-content="">{{medicationDetailDataSummaryStatus.skippedPercent}} %</span>
+                        SKIPPED
+                      </div> 
+                    </div>  
+                    
+                    <ng-template #notShowSKIPPEDRange>
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-skipped" data-content="">0 %</span>
+                        SKIPPED
+                      </div>
+                    </ng-template>
+
+                    
+                    <br/><br/>
+                  </div> 
+  
+                   
+                  
+
+             
+                  <div style="width: 400px;float: left;" *ngIf=" medicationDetailDataTiming.timesPerDay > 0; else notShowTiming">
+                    <p class="comment-box-title">Frequency Information:</p>
+                    <hr class="comment-box-line" />
+
+                    <div id="cd-timeline-wall" > 
+                    <div class="cd-timeline-block" *ngFor="let tdata of medicationDetailDataTiming.timeOfDay;let i=index;">
+                      <div class="cd-timeline-icon text-center "> 
+                      </div>
+                      <div class="cd-timeline-content padding ">
+                        <h5 class="marginBottom0 marginTop0">{{tdata}}</h5>
+                        
+                        <p class="timelineText" *ngIf=" medicationDetailData.medicine.instruction != null ">  {{medicationDetailData.medicine.instruction}}  </p>
+                    
+                      </div>
+                    </div>
+                  
+                    </div>
+                  </div>
+             
+                  <ng-template #notShowTiming>
+                    <div style="width: 400px;float: left;">
+                      <p class="comment-box-title">Frequency Information:</p>
+                      <hr class="comment-box-line" />
+                      <p><i>No Data Found</i></p>
+                    </div>
+                  </ng-template>
+                </section>
+              
+              </div>
+ 
+
+              </div>
+            -->
+
+        </div>
+           
+            
+            </div>   
+
+          </div>
+
+          <!--
+          <div class="" *ngIf="ChartresourceId !=''" style="padding: 0px;">
+          
+            <ion-card class="welcome-card" style="min-height:580px;-webkit-box-shadow: none;box-shadow: none;overflow-x: hidden !important;overflow-y: scroll !important;">
+            <div style="padding: 10px;width:100%;">
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-left-0 ma-top-10" >
+               
+                <section id="cd-timeline" class="cd-container">
+ 
+    
+                  <div class="med-summary" style="width: 100%; min-width: 400px; float: left; min-height:60px;">
+                    <span class="border-gray" style="cursor: default;">
+                    
+                      <h4>{{medicationDetailData.medicine.description}}&nbsp;
+                      <span class="med-active-class-box" *ngIf="medicationDetailData.status =='active'"> 
+                        <span class="med-active-class-text">Active Medication</span>
+                        <span class="med-active-class"></span>
+                      </span>
+                      </h4>
+                      <span></span>
+                      
+                    </span>
+                  </div>
+                 
+                <div style="width: 100%; float: left;min-height: 80px;">
+
+                  <div style="width: 250px;float: left;" *ngIf="medicationDetailData.medicine.dosageQty != null; else notShowUnit">
+                    <p class="comment-box-title">Strength/Concentration/Units:</p>
+                    <hr class="comment-box-line" />
+                    <p style="font-weight: bold;color: #000000;">{{medicationDetailData.medicine.dosageQty}}&nbsp; {{medicationDetailData.medicine.dosageUnit}}</p>
+                  </div>                  
+                  <ng-template #notShowUnit>
+                    <div style="width: 250px;float: left;">
+                      <p class="comment-box-title">Strength/Concentration/Units:</p>
+                      <hr class="comment-box-line" />
+                      <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                    </div>
+                  </ng-template>
+
+                  <div style="width: 320px;float: left;" *ngIf="medicationDetailData.medicine.startDate != null; else notShowPeroid">
+                    <p class="comment-box-title">Course Peroid:</p>
+                    <hr class="comment-box-line" />
+                    <p style="font-weight: bold;color: #000000;"> &nbsp;<span class="new-textXYZ" *ngIf=" medicationDetailData.duration.startDate != null "> {{medicationDetailData.duration.startDate }} - {{medicationDetailData.duration.endDate }}</span> <br/> </p>
+                  </div>                  
+                  <ng-template #notShowPeroid>
+                    <div style="width: 320px;float: left;">
+                      <p class="comment-box-title">Course Peroid:</p>
+                      <hr class="comment-box-line" />
+                      <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                    </div>
+                  </ng-template>
+
+                  <div style="width: 320px;float: left;" *ngIf="medicationDetailData.medicine.instruction != null; else notShowInstruction">
+                    <p class="comment-box-title">Dosage Instruction:</p>
+                    <hr class="comment-box-line" />
+                    <p style="font-weight: bold;color: #000000;"> {{medicationDetailData.medicine.instruction}} </p>
+                  </div>
+                  <ng-template #notShowInstruction>
+                    <div style="width: 320px;float: left;">
+                      <p class="comment-box-title">Dosage Instruction:</p>
+                      <hr class="comment-box-line" />
+                      <p style="font-weight: bold;color: #000000;"><i>No Data Found</i></p> 
+                    </div>
+                  </ng-template>
+ 
+                </div>  
+
+
+                  <div style="width: 100%;min-width: 400px; float: left; min-height: 120px;">
+                    <p class="comment-box-title">Medication Summary</p>
+                    <hr class="comment-box-line" />
+                    <div *ngIf="medicationDetailDataSummaryStatus.takenPercent != null; else notShowTAKENRange">
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-taken" data-content="">{{medicationDetailDataSummaryStatus.takenPercent}} %</span>
+                        TAKEN
+                      </div>
+                    </div>
+                    <ng-template #notShowTAKENRange>
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-taken" data-content="">0 %</span>
+                        TAKEN
+                      </div>
+                    </ng-template>
+
+                    <div *ngIf="medicationDetailDataSummaryStatus.takenPercent != null; else notShowSKIPPEDRange">
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-skipped" data-content="">{{medicationDetailDataSummaryStatus.skippedPercent}} %</span>
+                        SKIPPED
+                      </div> 
+                    </div>  
+                    
+                    <ng-template #notShowSKIPPEDRange>
+                      <div style="width: 200px;float: left;color: #000;font-weight: bold;">
+                        <span class="text-span-skipped" data-content="">0 %</span>
+                        SKIPPED
+                      </div>
+                    </ng-template>
+
+                    
+                    <br/><br/>
+                  </div> 
+  
+                   
+                  
+
+             
+                  <div style="width: 400px;float: left;" *ngIf=" medicationDetailDataTiming.timesPerDay > 0; else notShowTiming">
+                    <p class="comment-box-title">Frequency Information:</p>
+                    <hr class="comment-box-line" />
+
+                    <div id="cd-timeline-wall" > 
+                    <div class="cd-timeline-block" *ngFor="let tdata of medicationDetailDataTiming.timeOfDay;let i=index;">
+                      <div class="cd-timeline-icon text-center "> 
+                      </div>
+                      <div class="cd-timeline-content padding ">
+                        <h5 class="marginBottom0 marginTop0">{{tdata}}</h5>
+                        
+                        <p class="timelineText" *ngIf=" medicationDetailData.medicine.instruction != null ">  {{medicationDetailData.medicine.instruction}}  </p>
+                    
+                      </div>
+                    </div>
+                  
+                    </div>
+                  </div>
+             
+                  <ng-template #notShowTiming>
+                    <div style="width: 400px;float: left;">
+                      <p class="comment-box-title">Frequency Information:</p>
+                      <hr class="comment-box-line" />
+                      <p><i>No Data Found</i></p>
+                    </div>
+                  </ng-template>
+                </section>
+              
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 pad-left-0 ma-top-10" >
+                <section id="cd-timelineX" class="cd-container">
+                  
+                  <div class="comment-box" *ngIf="medicationDetailData.summary.history.length > 0">
+                    <p class="comment-box-title">Patient Comments / Remarks :</p>
+                    <hr class="comment-box-line" />
+                    <div *ngFor="let hdata of medicationDetailData.summary.history;let i=index;">
+
+                      <div class="new-text-box" > 
+                        <span class="new-text-time">{{hdata.datetime | date: "d MMM, y"}} - {{hdata.datetime | date: "hh:mm a"}} </span> 
+                        <p>{{hdata.status}} - {{hdata.notes}} </p>
+                      </div>
+  
+                    </div>
+                  
+                  </div>
+                  
+                  <div class="comment-box" *ngIf="medicationDetailData.summary.history.length == 0">
+                      <p class="comment-box-title">Patient Comments / Remarks :</p>
+                      <hr class="comment-box-line" />
+                      <p><i>No Data Found</i></p>
+                  </div>    
+                   
+                </section>
+              </div>
+              
+            </div>
+            </ion-card>
+           
+          </div>
+        -->
+
+          
+        </div>
+
+
+      </div>
+ 
+
+    </div>
+       
+    </section>        
+    </div>
+
+
+    </div>
+    </div>
+    </div>
+    

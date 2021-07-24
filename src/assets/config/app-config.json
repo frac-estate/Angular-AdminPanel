@@ -1,0 +1,9 @@
+{
+    "production": true,
+    "baseUrl": "http://18.213.144.230:11009/entity",
+    "chatbaseUrl": "http://18.213.144.230:11009/entity",
+    "providerbaseUrl": "http://18.213.144.230:11001/api",
+    "websocketBaseUrl": "http://18.213.144.230:11009/entity",
+    "socketIOBaseUrl": "http://18.213.144.230:11009",
+    "webbaseUrl": "/"
+}

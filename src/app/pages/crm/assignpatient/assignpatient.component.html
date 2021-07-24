@@ -1,0 +1,228 @@
+<div class="container-fluid">
+
+  <div class="row mb-2">
+    <div class="col-sm-8">
+      <app-page-title title="Assign Patients for" style="float: left;"></app-page-title>
+      &nbsp; 
+      <span *ngIf="cmstaff" style="float: left;color: #3182CE;font-size: 20px;font-weight: bold;padding: 23px 13px;">{{cmstaff.firstName}} {{cmstaff.lastName}}</span>  
+    </div>  
+    <div class="col-sm-4">
+      &nbsp;   
+    </div>
+  </div>  
+
+  
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body" [ngStyle]="{'display':isLoading === true ? 'block' : 'none' }" >
+
+            <div class="text-center" style="min-height:500px"> <img src="./assets/images/loaderbig.gif" style="width:400px" alt="" /></div>
+          
+          </div>
+          <div class="card-body" [ngStyle]="{'display':isLoading === true ? 'none' : 'block' }">
+            <div class="row mb-2">
+
+            <div class="col-sm-2">
+              &nbsp;
+            </div>
+            <div class="col-sm-8">
+            <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+            <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+              
+            <div class="multi-select-label" style="width: 100%;height: 22px;">
+              <div style="float: left;width: 60%;color: #A0AEC0;">
+                
+                <span style="margin-left:1px; float: left;">
+                  Patients to select from
+                </span>
+              
+                <span  style="margin-left: 50px; float: left;">                  
+                  <a style="color: #3182CE;border: none;border-radius: 5px;" href="javascript: void(0);" class="mb-2" (click)="openModal(filterpatientcontent)">
+                    Filter  <img src="./assets/icon/icon-filter.svg" style="width: 15px;top: -2px;position: relative;left: 10px;" />
+                  </a>
+                  <a style="color: #FEB2B2;border: none;border-radius: 5px;margin-left: 20px;" *ngIf=" nameFilterData.length > 0 " href="javascript: void(0);" class="mb-2" (click)="filterclearData()">
+                    ( Clear X )
+                  </a>
+                </span>
+       
+              </div>  
+              <div style="float:right;width: 40%;color: #A0AEC0;">Assigned Patients</div>
+            </div> 
+            <form (ngSubmit)="saveData()" [formGroup]="validationform">  
+  
+              <div id="mselectbox" > 
+                  <ng2-dual-list-box formControlName="patients" name="patients" id="patientsNG2" 
+                  [data]="cmpatient" [(ngModel)]="cmmapped" valueField="sh360Id" textField="fullName"
+                  (onItemsMoved)="log($event)"
+                  ></ng2-dual-list-box>
+              </div>
+            <!-- 
+               <ng2-dual-list-box formControlName="patients" name="patients" id="patientsNG2X" 
+                  [data]="cmpatient" [(ngModel)]="cmmapped" valueField="sh360Id" textField="fullName"
+                                     (onAvailableItemSelected)="log($event)"
+                                     (onSelectedItemsSelected)="log($event)"
+                                     (onItemsMoved)="log($event)"></ng2-dual-list-box>
+            -->    
+            <!--                         
+            <select multiple="multiple" class="multi-select" id="patientsX" formControlName="patients"
+              name="patients" data-plugin="multiselect" [(ngModel)]="cmmapped" 
+              (change)="onPatientChange($event,validationform)" [ngClass]="{ 'is-invalid': submitted && form.patients.errors }">
+                <option [value]="patient.sh360Id" *ngFor="let patient of cmpatient;let i = index">{{patient.firstName}} {{patient.lastName}}</option> 
+            </select>
+            -->
+            <br/>
+            <div class="text-right">
+              <button type="submit" class="btn btn-success">Save Changes</button>
+              <button type="button" class="btn btn-danger ml-1"
+              (click)="backtocasemanager()">Exit</button> 
+            </div>
+
+            </form>
+
+            </div>
+            <div class="col-sm-2">
+              &nbsp;
+            </div>
+          </div>
+
+     </div>
+        </div>
+      </div> 
+    </div>
+  
+  </div>
+  
+
+<!-- Case manager model -->
+ 
+ 
+  
+<ng-template #filterpatientcontent role="document" let-modal="close">
+  <div class="modal-header bg-dark" style="background-color: #ffffff !important;">
+    <h4 class="modal-title text-whiteX">Filter Patient List</h4>
+    <span>                  
+      <a style="color: #FEB2B2;border: none;border-radius: 5px;margin-left: 20px;" *ngIf=" nameFilterData.length > 0 " href="javascript: void(0);" class="mb-2" (click)="filterclearData()">
+        ( Clear X )
+      </a>
+    </span>
+    <button type="button" class="close text-whiteX" aria-label="Close" (click)="modal('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-3" style="background-color: #ffffff;">
+    <div class="text-left">
+      
+      <ngb-alert type="danger" *ngIf="errormsg" [dismissible]="false">{{ errormsg }}</ngb-alert>
+      <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{ successmsg }}</ngb-alert>
+
+
+
+      <form (ngSubmit)="filterData()" [formGroup]="filtervalidationform">
+
+        
+        <div class="container">
+          <ngb-tabset
+          justify="justified"
+          type="pills"
+          orientation="vertical"
+          [destroyOnHide]="false">
+            
+          <!--
+            <ngb-tab>
+             <ng-template ngbTabTitle>Status</ng-template>
+              <ng-template ngbTabContent> 
+                 
+                
+                <div class="form-group" style=" width: 100%;height: 20px;"> 
+                  Status
+                </div>  
+                <div class="form-group" style=" width: 100%;"> 
+ 
+
+<label class="btn btn-primary" for="btn-checks1"><input type="checkbox" class="btn-check" id="btn-checks1" autocomplete="off" formControlName="status_active" /> Active</label>
+ 
+<label class="btn btn-primary" for="btn-checks2"><input type="checkbox" class="btn-check" id="btn-checks2" autocomplete="off" formControlName="status_inactive" /> Inactive</label>
+    
+                </div> 
+                <div class="form-group" style=" width: 100%;height: 20px;"> 
+                  Registered?
+                </div>  
+                <div class="form-group" style=" width: 100%;"> 
+ 
+
+<label class="btn btn-primary" for="btn-checkr1"><input type="checkbox" class="btn-check" id="btn-checkr1" autocomplete="off" formControlName="registerstatus_yes" /> Yes</label>
+ 
+<label class="btn btn-primary" for="btn-checkr2"><input type="checkbox" class="btn-check" id="btn-checkr2" autocomplete="off" formControlName="registerstatus_no" /> No</label>
+    
+                </div> 
+
+              </ng-template>
+            </ngb-tab>
+          -->
+            <ngb-tab>
+              <ng-template ngbTabTitle>Alphabetically</ng-template>
+              <ng-template ngbTabContent>
+               
+                
+                <div class="form-group" style=" width: 100%;height: 20px;">
+                  <input (click)="updateboxarea(1)" type="radio" name="alpharadio" class="btn-radio" id="btn-radio1" name="checkboxareavalue" formControlName="checkboxareavalue" autocomplete="off" [(ngModel)]="checkboxareavalue" [value]="1" /><label for="btn-radio1"> Choose Alphabetic Groups</label>
+                </div>  
+                <div id="checkboxarea" [ngClass]="checkboxarea == true ? 'form-group' : 'form-group disabledarea'"  style=" width: 100%;height: 200px;"> 
+ 
+
+                  <label class="btn btn-primary" for="btn-check1"><input type="checkbox" class="btn-check" id="btn-check1" autocomplete="off" name="alphselectbox" formControlName="alphselectbox1" /> A-C</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check2"><input type="checkbox" class="btn-check" id="btn-check2" autocomplete="off" name="alphselectbox" formControlName="alphselectbox2" /> D-F</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check3"><input type="checkbox" class="btn-check" id="btn-check3" autocomplete="off" name="alphselectbox" formControlName="alphselectbox3" /> G-I</label>
+                                     
+                  
+                  <label class="btn btn-primary" for="btn-check4"><input type="checkbox" class="btn-check" id="btn-check4" autocomplete="off" name="alphselectbox" formControlName="alphselectbox4" /> J-L</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check5"><input type="checkbox" class="btn-check" id="btn-check5" autocomplete="off" name="alphselectbox" formControlName="alphselectbox5" /> M-O</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check6"><input type="checkbox" class="btn-check" id="btn-check6" autocomplete="off" name="alphselectbox" formControlName="alphselectbox6" /> P-R</label>
+                                     
+                  
+                  <label class="btn btn-primary" for="btn-check7"><input type="checkbox" class="btn-check" id="btn-check7" autocomplete="off" name="alphselectbox" formControlName="alphselectbox7" /> S-U</label>
+                  
+                  
+                  <label class="btn btn-primary" for="btn-check8"><input type="checkbox" class="btn-check" id="btn-check8" autocomplete="off"  name="alphselectbox" formControlName="alphselectbox8"/> V-Z</label>
+                   
+                </div> 
+
+                
+                <div class="form-group" style=" width: 100%;height: 20px;"  >
+                  <input (click)="updateboxarea(2)" type="radio" name="alpharadio" class="btn-radio" id="btn-radio2" name="inputboxareavalue" formControlName="inputboxareavalue" autocomplete="off" [(ngModel)]="inputboxareavalue" [value]="1" /> <label for="btn-radio2"> Choose Specific Alphabets</label> 
+                </div>  
+                
+                <div id="inputboxarea" [ngClass]="inputboxarea == true ? 'form-group' : 'form-group disabledarea'" style=" width: 100%;height: 50px;"> 
+                   <input type="text" class="form-control" placeholder="(eg) A,B,"  id="alphainputbox" name="alphainputbox" formControlName="alphainputbox" />
+                   <br/><span>You can type in commas</span>
+                </div>  
+                  
+                  
+                  
+              </ng-template>
+            </ngb-tab>
+              
+             
+          </ngb-tabset>
+          </div>
+ 
+
+        <div class="text-right">
+          <button type="submit" class="btn btn-success">Apply Filter</button>
+          <button type="button" class="btn btn-danger ml-1"
+            (click)="modal('close click')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+ 

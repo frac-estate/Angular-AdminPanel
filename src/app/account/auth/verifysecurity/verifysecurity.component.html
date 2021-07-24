@@ -1,0 +1,110 @@
+<div class="account-pages mt-5 mb-5">
+    <div class="container" *ngIf="userquestions">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-patternXYZ">
+            <div class="card-body p-4X">
+              <!-- Logo -->
+              <div class="text-center w-100 m-auto">
+                <a routerLink="/">
+                  <img src="./assets/images/sh360-logo.svg" alt="" height="75">
+                </a>
+                <p class="text-mutedX text-white-50X mb-4X mt-3X" style="color: #222222;font-weight: bold;">Please answer your secret questions</p>
+              </div>
+            </div>
+            <div class="card-body p-4X">
+               
+              <form class="needs-validation" name="verifysecurityForm" [formGroup]="verifysecurityForm" (ngSubmit)="onSubmit()" novalidate>
+  
+                <!--<app-ui-preloader [display]="loading"></app-ui-preloader>-->
+   
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+                <ngb-alert type="success" *ngIf="success" [dismissible]="false">{{ success }}</ngb-alert>
+  
+                <div class="form-group mb-3" *ngIf="!success">
+                  <label for="answer2" style="color: #3182CE;width: 100%;">
+                    {{userquestions[0].securityQuestionId.question}}
+                  </label>
+                  <input type="hidden" formControlName="question1" name="question1" id="question1" [(ngModel)]="userquestions[0].securityQuestionId._id" />
+                  <input type="text" formControlName="answer1" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.answer1.errors }" name="answer1" id="answer1" placeholder="Enter Your answer" style="height: 50px;" />
+  
+                  <div *ngIf="submitted && f.answer1.errors" class="invalid-feedback">
+                    <div *ngIf="f.answer1.errors.required">Please answer this question</div>
+                  </div>
+                </div>
+                <div class="form-group mb-3" *ngIf="!success">
+                    <label for="answer2" style="color: #3182CE;width: 100%;">
+                      {{userquestions[1].securityQuestionId.question}}
+                    </label>
+                    <input type="hidden" formControlName="question2" name="question2" id="question2" [(ngModel)]="userquestions[1].securityQuestionId._id" /> 
+                    <input type="text" formControlName="answer2" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.answer2.errors }" name="answer2" id="answer2" placeholder="Enter Your answer" style="height: 50px;" />
+    
+                    <div *ngIf="submitted && f.answer2.errors" class="invalid-feedback">
+                      <div *ngIf="f.answer2.errors.required">Please answer this question</div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-3" *ngIf="!success">
+                    <label for="answer2" style="color: #3182CE;width: 100%;">
+                      {{userquestions[2].securityQuestionId.question}}
+                    </label>
+                    <input type="hidden" formControlName="question3" name="question3" id="question3" [(ngModel)]="userquestions[2].securityQuestionId._id" />
+                    <input type="text" formControlName="answer3" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.answer3.errors }" id="answer3" placeholder="Enter Your answer" style="height: 50px;" />
+    
+                    <div *ngIf="submitted && f.answer3.errors" class="invalid-feedback">
+                      <div *ngIf="f.answer3.errors.required">Please answer this question</div>
+                    </div>
+                  </div>
+  
+                <div class="form-group mb-0 text-center" *ngIf="!success">
+                    <!--<p>You need to give atleast 2 of 3 answers correctly</p>-->
+                    <!--<p>Answered: 0/2</p>-->
+                  <button class="btn btn-primary btn-block" type="submit" style="background-color: #3182CE;">Verify Answers</button>
+                </div>
+              </form>
+  
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <p>
+                    <a routerLink="/account/login" class="text-blue ml-1"> < Back to login </a>
+                  </p>
+                </div> <!-- end col -->
+              </div>
+              <!-- end row -->
+              
+            </div> <!-- end card-body-->
+          </div>
+          <!-- end card -->
+  
+  
+        </div> <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end page -->
+  
+<footer class="footer footer-alt" style="color: #718096;background: rgba(255, 255, 255, 0.55);">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-6">
+      <div style="float: left;">
+        <img src="./assets/images/sh360-footer-logo.svg" alt="" style=" height: 12px;padding-right: 20px;margin-top: -5px;" />
+      </div>
+      <div style="float: left;">
+        2021 &copy; Design and Developed by <a href="https://www.hlth360.net/" target="_blank" class="text-white-50X" style="color: #336dbf !important;"><b>HEALTH360 Inc</b></a> 
+      </div>  
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-6">
+      <div style="float: right;">
+        Call Support: <a href="tel:703-665-0820" class="text-white ml-1" style="color: #336dbf !important;"><b>703-665-0820</b></a>
+      </div>
+      <div style="float: right;">
+        <a routerLink="/account/terms" target="_blank" href="javascript:void(0);" class="text-white-50X" style="color: #336dbf !important;"><b>Terms of Use</b></a> &nbsp;&nbsp;|&nbsp;&nbsp;
+      </div>  
+    </div>
+      
+  </div> 
+</footer>

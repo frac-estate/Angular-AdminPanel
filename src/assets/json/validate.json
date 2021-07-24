@@ -1,0 +1,17 @@
+{
+    "result": 1,
+    "message": "Successfully validated the verification code !!",
+    "dateTime": "2020-07-21T08:35:04.718Z",
+    "httpCode": 200,
+    "payload": [
+        {
+            "_id": "5f0450a4c75d0a426ebfc1fd",
+            "loggedUser": "0ffa67ed-397d-4940-9a32-03a2deb17647",
+            "username": "bruce@gmail.com",
+            "password": "70dbe131ebe4b2b7762a4b6d2f6fb5b6640b80716deffd0fdd608eb94f879e03",
+            "activationCode": "224625",
+            "createdAt": "2020-07-07T10:53:01.282Z",
+            "updatedAt": "2020-07-07T10:53:01.282Z"
+        }
+    ]
+}

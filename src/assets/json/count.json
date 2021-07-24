@@ -1,0 +1,12 @@
+{
+    "result": 1,
+    "message": "Successfully retrived members",
+    "dateTime": "2020-07-21T09:02:29.260Z",
+    "httpCode": 200,
+    "payload": {
+        "Total": 5,
+        "Registered": 2,
+        "Preregistered": 3,
+        "Expired": 1
+    }
+}

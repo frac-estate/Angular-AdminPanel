@@ -1,0 +1,9 @@
+{
+    "production": true,
+    "baseUrl": "https://valapi.useradm.hlth360.net/entity",
+    "chatbaseUrl": "https://fiaifahc42.execute-api.us-east-1.amazonaws.com/DEV/cm",
+    "providerbaseUrl": "https://xmf3rxw3oi.execute-api.us-east-1.amazonaws.com/Dev/clientproxy",
+    "websocketBaseUrl": "https://fiaifahc42.execute-api.us-east-1.amazonaws.com/DEV/cm",
+    "socketIOBaseUrl": "https://fiaifahc42.execute-api.us-east-1.amazonaws.com/DEV",
+    "webbaseUrl": "/"
+}
